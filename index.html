@@ -157,6 +157,12 @@
             </a>
           </li>
 
+          <li class="social-item">
+            <button id="downloadPdfBtn" class="social-link">
+              <ion-icon name="download"></ion-icon>
+            </button>
+          </li>
+
         </ul>
 
       </div>
@@ -498,8 +504,15 @@
             <div class="icon-box">
               <ion-icon name="book-outline"></ion-icon>
             </div>
-
+          
             <h3 class="h3">Experience</h3>
+            
+            <!-- Social item with download button -->
+            <li class="social-item">
+              <button id="downloadPdfBtn" class="social-link" style="height: 40px; width: 40px;">
+                <ion-icon name="download" style="font-size: 40px;"></ion-icon>
+              </button>
+            </li>
           </div>
 
           <ol class="timeline-list">
@@ -836,7 +849,7 @@
 
             <button class="filter-select" data-select>
 
-              <div class="select-value" data-selecct-value>Select category</div>
+              <div class="select-value" data-select-value>Select category</div>
 
               <div class="select-icon">
                 <ion-icon name="chevron-down"></ion-icon>
@@ -983,7 +996,9 @@
                 <h3 class="project-title">MyC2i (React Native)</h3>
 
                 <!-- <p class="project-category">React Native</p> -->
-                <p class="project-category">This app mainly works related to Islamic dawat. This app deals with nearby mosques and various Islamic hadiths, dawat related discussions etc. Here you can donate to specific mosques or madrasas.</p>
+                <p class="project-category">This app mainly works related to Islamic dawat. This app deals with nearby
+                  mosques and various Islamic hadiths, dawat related discussions etc. Here you can donate to specific
+                  mosques or madrasas.</p>
 
               </a>
             </li>
@@ -1002,7 +1017,9 @@
                   eDoctor (React Native)</h3>
 
                 <!-- <p class="project-category">React Native</p> -->
-                <p class="project-category">This project is an Android Mobile Application which allows the users to obtain information of doctors. The app can also save all the information related to the treatment of the patient.</p>
+                <p class="project-category">This project is an Android Mobile Application which allows the users to
+                  obtain information of doctors. The app can also save all the information related to the treatment of
+                  the patient.</p>
 
               </a>
             </li>
@@ -1021,7 +1038,9 @@
                   Patient’s Integrated Medical Information System (Native Android)</h3>
 
                 <!-- <p class="project-category">React Native</p> -->
-                <p class="project-category">This project is an Android Mobile Application which allows the users to obtain information of doctors and hospitals near him. The app can also save all the information related to the treatment of the patient.</p>
+                <p class="project-category">This project is an Android Mobile Application which allows the users to
+                  obtain information of doctors and hospitals near him. The app can also save all the information
+                  related to the treatment of the patient.</p>
 
               </a>
             </li>
@@ -1068,8 +1087,6 @@
         </section>
 
       </article>
-
-
 
 
 
@@ -1308,6 +1325,14 @@
 
       </article>
 
+    </div>
+
+    <div id="projectModal" class="modal">
+      <div class="modal-content-protfolio">
+        <span class="close">&times;</span>
+        <img id="modalImg" src="" alt="">
+        <div id="modalBody"></div>
+      </div>
     </div>
 
   </main>
