@@ -208,7 +208,7 @@ projectItems.forEach(item => {
 // Function to handle download button click
 document.getElementById("downloadPdfBtn").addEventListener("click", function() {
   // Replace 'path_to_your_pdf_file.pdf' with the actual path to your PDF file
-  const pdfUrl = '/Razwanul_Hasan_Professional_CV4.pdf';
+  const pdfUrl = '/Razwanul_Hasan_Professional_CV5.pdf';
   
   // Create an anchor element
   const anchorElement = document.createElement('a');
@@ -217,7 +217,7 @@ document.getElementById("downloadPdfBtn").addEventListener("click", function() {
   anchorElement.href = pdfUrl;
   
   // Set the download attribute to force download
-  anchorElement.download = '/Razwanul_Hasan_Professional_CV4.pdf';
+  anchorElement.download = '/Razwanul_Hasan_Professional_CV5.pdf';
   
   // Append the anchor element to the body
   document.body.appendChild(anchorElement);
