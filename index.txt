@@ -18,7 +18,7 @@ Birthday
 July 14
 
 Location
-Sukrabad, Dhaka, Bangladesh
+Mirpur-2, Dhaka, Bangladesh
 
 # navbar
 
@@ -32,7 +32,7 @@ Contact
 
 About me
 
-Highly skilled and accomplished Mobile Application Team with 3 years of extensive experience in Android and iOS development. Proficient in native Android, iOS, Flutter, and React Native platforms. Successfully delivered and maintained 18 apps throughout my career. Proven expertise in project management, and delivering exceptional mobile solutions. Committed to innovation and staying up-to-date with industry trends to drive continuous improvement.
+Highly skilled and accomplished Mobile Application Team with 4+ years of extensive experience in Android and iOS development. Proficient in native Android, iOS, Flutter, and React Native platforms. Successfully delivered and maintained 18 apps throughout my career. Proven expertise in project management, and delivering exceptional mobile solutions. Committed to innovation and staying up-to-date with industry trends to drive continuous improvement.
 
 
 
