@@ -1,216 +1,424 @@
 "use strict";
 
-// element toggle function
-const elementToggleFunc = function (elem) {
-  elem.classList.toggle("active");
-};
+/* ===================================================================
+   Md Razwanul Hasan — Portfolio JavaScript
+   Architecture: Utility → Sidebar → Navigation → Testimonials →
+                 Portfolio Filter → Project Modal → Contact Form →
+                 CV Download → Animations → Stats Counter → Init
+   Redesigned: February 2026
+   =================================================================== */
 
-// sidebar variables
-const sidebar = document.querySelector("[data-sidebar]");
-const sidebarBtn = document.querySelector("[data-sidebar-btn]");
 
-// sidebar toggle functionality for mobile
-sidebarBtn.addEventListener("click", function () {
-  elementToggleFunc(sidebar);
-});
+/* ─────────────────────────────────────────────
+   §1. UTILITY FUNCTIONS
+   ───────────────────────────────────────────── */
 
-// testimonials variables
-const testimonialsItem = document.querySelectorAll("[data-testimonials-item]");
-const modalContainer = document.querySelector("[data-modal-container]");
-const modalCloseBtn = document.querySelector("[data-modal-close-btn]");
-const overlay = document.querySelector("[data-overlay]");
+/** Toggle 'active' class on an element */
+const toggleActive = (el) => el.classList.toggle("active");
 
-// modal variable
-const modalImg = document.querySelector("[data-modal-img]");
-const modalTitle = document.querySelector("[data-modal-title]");
-const modalText = document.querySelector("[data-modal-text]");
+/** Safely query a single element */
+const $ = (selector) => document.querySelector(selector);
 
-// modal toggle function
-const testimonialsModalFunc = function () {
-  modalContainer.classList.toggle("active");
-  overlay.classList.toggle("active");
-};
+/** Safely query all matching elements */
+const $$ = (selector) => document.querySelectorAll(selector);
 
-// add click event to all modal items
-for (let i = 0; i < testimonialsItem.length; i++) {
-  testimonialsItem[i].addEventListener("click", function () {
-    modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
-    modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
-    modalTitle.innerHTML = this.querySelector(
-      "[data-testimonials-title]"
-    ).innerHTML;
-    modalText.innerHTML = this.querySelector(
-      "[data-testimonials-text]"
-    ).innerHTML;
 
-    testimonialsModalFunc();
-  });
+/* ─────────────────────────────────────────────
+   §2. SIDEBAR TOGGLE (Mobile)
+   ───────────────────────────────────────────── */
+
+const sidebar = $("[data-sidebar]");
+const sidebarBtn = $("[data-sidebar-btn]");
+
+if (sidebarBtn && sidebar) {
+  sidebarBtn.addEventListener("click", () => toggleActive(sidebar));
 }
 
-// add click event to modal close button
-modalCloseBtn.addEventListener("click", testimonialsModalFunc);
-overlay.addEventListener("click", testimonialsModalFunc);
 
-// custom select variables
-const select = document.querySelector("[data-select]");
-const selectItems = document.querySelectorAll("[data-select-item]");
-const selectValue = document.querySelector("[data-select-value]");
-const filterBtn = document.querySelectorAll("[data-filter-btn]");
+/* ─────────────────────────────────────────────
+   §3. PAGE NAVIGATION
+   ───────────────────────────────────────────── */
 
-select.addEventListener("click", function () {
-  elementToggleFunc(this);
-});
+const navigationLinks = $$("[data-nav-link]");
+const pages = $$("[data-page]");
 
-// add event in all select items
-for (let i = 0; i < selectItems.length; i++) {
-  selectItems[i].addEventListener("click", function () {
-    let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
-    elementToggleFunc(select);
-    filterFunc(selectedValue);
-  });
-}
+navigationLinks.forEach((link) => {
+  link.addEventListener("click", function () {
+    const targetPage = this.innerHTML.toLowerCase();
 
-// filter variables
-const filterItems = document.querySelectorAll("[data-filter-item]");
-
-const filterFunc = function (selectedValue) {
-  for (let i = 0; i < filterItems.length; i++) {
-    if (selectedValue === "all") {
-      filterItems[i].classList.add("active");
-    } else if (selectedValue === filterItems[i].dataset.category) {
-      filterItems[i].classList.add("active");
-    } else {
-      filterItems[i].classList.remove("active");
-    }
-  }
-};
-
-// add event in all filter button items for large screen
-let lastClickedBtn = filterBtn[0];
-
-for (let i = 0; i < filterBtn.length; i++) {
-  filterBtn[i].addEventListener("click", function () {
-    let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
-    filterFunc(selectedValue);
-
-    lastClickedBtn.classList.remove("active");
-    this.classList.add("active");
-    lastClickedBtn = this;
-  });
-}
-
-// contact form variables
-const form = document.querySelector("[data-form]");
-const formInputs = document.querySelectorAll("[data-form-input]");
-const formBtn = document.querySelector("[data-form-btn]");
-
-// add event to all form input field
-// for (let i = 0; i < formInputs.length; i++) {
-//   formInputs[i].addEventListener("input", function () {
-
-//     // check form validation
-//     if (form.checkValidity()) {
-//       formBtn.removeAttribute("disabled");
-//     } else {
-//       formBtn.setAttribute("disabled", "");
-//     }
-
-//   });
-form.addEventListener("input", function () {
-  // check form validation
-  if (form.checkValidity()) {
-    formBtn.removeAttribute("disabled");
-  } else {
-    formBtn.setAttribute("disabled", "");
-  }
-});
-formBtn.addEventListener("click", function (event) {
-  event.preventDefault(); // Prevent the default form submission behavior
-  // Show a message to the user
-  alert(
-    "This process is under development. Please contact whatsapp or LinkedIn"
-  );
-});
-
-// page navigation variables
-const navigationLinks = document.querySelectorAll("[data-nav-link]");
-const pages = document.querySelectorAll("[data-page]");
-
-// add event to all nav link
-for (let i = 0; i < navigationLinks.length; i++) {
-  navigationLinks[i].addEventListener("click", function () {
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
+    pages.forEach((page, i) => {
+      if (targetPage === page.dataset.page) {
+        page.classList.add("active");
         navigationLinks[i].classList.add("active");
         window.scrollTo(0, 0);
+
+        // Re-trigger reveal animations on the new page
+        setTimeout(() => initScrollReveal(), 100);
+        // Animate skill bars if Resume page
+        if (targetPage === "resume") {
+          setTimeout(() => animateSkillBars(), 300);
+        }
+        // Animate stats if About page
+        if (targetPage === "about") {
+          setTimeout(() => animateStats(), 300);
+        }
       } else {
-        pages[i].classList.remove("active");
+        page.classList.remove("active");
         navigationLinks[i].classList.remove("active");
       }
+    });
+  });
+});
+
+
+/* ─────────────────────────────────────────────
+   §4. TESTIMONIALS MODAL
+   ───────────────────────────────────────────── */
+
+const testimonialsItems = $$("[data-testimonials-item]");
+const modalContainer = $("[data-modal-container]");
+const modalCloseBtn = $("[data-modal-close-btn]");
+const overlay = $("[data-overlay]");
+const modalImg = $("[data-modal-img]");
+const modalTitle = $("[data-modal-title]");
+const modalText = $("[data-modal-text]");
+
+const toggleTestimonialsModal = () => {
+  if (modalContainer) toggleActive(modalContainer);
+  if (overlay) toggleActive(overlay);
+};
+
+testimonialsItems.forEach((item) => {
+  item.addEventListener("click", function () {
+    const avatar = this.querySelector("[data-testimonials-avatar]");
+    const title = this.querySelector("[data-testimonials-title]");
+    const text = this.querySelector("[data-testimonials-text]");
+
+    if (modalImg && avatar) {
+      modalImg.src = avatar.src;
+      modalImg.alt = avatar.alt;
+    }
+    if (modalTitle && title) modalTitle.innerHTML = title.innerHTML;
+    if (modalText && text) modalText.innerHTML = text.innerHTML;
+
+    toggleTestimonialsModal();
+  });
+});
+
+if (modalCloseBtn) modalCloseBtn.addEventListener("click", toggleTestimonialsModal);
+if (overlay) overlay.addEventListener("click", toggleTestimonialsModal);
+
+
+/* ─────────────────────────────────────────────
+   §5. PORTFOLIO FILTER
+   ───────────────────────────────────────────── */
+
+const select = $("[data-select]");
+const selectItems = $$("[data-select-item]");
+const selectValue = $("[data-select-value]");
+const filterBtns = $$("[data-filter-btn]");
+const filterItems = $$("[data-filter-item]");
+
+// Mobile select dropdown
+if (select) {
+  select.addEventListener("click", function () { toggleActive(this); });
+}
+
+// Filter logic
+const filterFunc = (selectedValue) => {
+  filterItems.forEach((item) => {
+    if (selectedValue === "all" || selectedValue === item.dataset.category) {
+      item.classList.add("active");
+    } else {
+      item.classList.remove("active");
+    }
+  });
+};
+
+// Mobile select items
+selectItems.forEach((item) => {
+  item.addEventListener("click", function () {
+    const value = this.innerText.toLowerCase();
+    if (selectValue) selectValue.innerText = this.innerText;
+    if (select) toggleActive(select);
+    filterFunc(value);
+  });
+});
+
+// Desktop filter buttons
+let lastActiveFilterBtn = filterBtns[0];
+
+filterBtns.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    const value = this.innerText.toLowerCase();
+    if (selectValue) selectValue.innerText = this.innerText;
+    filterFunc(value);
+
+    if (lastActiveFilterBtn) lastActiveFilterBtn.classList.remove("active");
+    this.classList.add("active");
+    lastActiveFilterBtn = this;
+  });
+});
+
+
+/* ─────────────────────────────────────────────
+   §6. PROJECT DETAIL MODAL
+   ───────────────────────────────────────────── */
+
+const projectModal = $("#projectModal");
+const projectModalClose = $("#projectModalClose");
+const modalImgEl = $("#modalImg");
+const modalTitleEl = $("#modalTitle");
+const modalDescEl = $("#modalDesc");
+const modalTechEl = $("#modalTech");
+
+// Open modal on project click
+const projectLinks = $$(".project-link");
+
+projectLinks.forEach((link) => {
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const imgSrc = this.querySelector("img")?.src || "";
+    const title = this.dataset.projectTitle || "";
+    const desc = this.dataset.projectDesc || "";
+    const tech = this.dataset.projectTech || "";
+
+    if (modalImgEl) modalImgEl.src = imgSrc;
+    if (modalTitleEl) modalTitleEl.textContent = title;
+    if (modalDescEl) modalDescEl.textContent = desc;
+
+    // Build tech tags
+    if (modalTechEl) {
+      modalTechEl.innerHTML = "";
+      tech.split(",").forEach((t) => {
+        const trimmed = t.trim();
+        if (trimmed) {
+          const tag = document.createElement("span");
+          tag.className = "tech-tag";
+          tag.textContent = trimmed;
+          modalTechEl.appendChild(tag);
+        }
+      });
+    }
+
+    if (projectModal) {
+      projectModal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+  });
+});
+
+// Close project modal
+const closeProjectModal = () => {
+  if (projectModal) {
+    projectModal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+};
+
+if (projectModalClose) {
+  projectModalClose.addEventListener("click", closeProjectModal);
+}
+
+if (projectModal) {
+  projectModal.addEventListener("click", (e) => {
+    if (e.target === projectModal) closeProjectModal();
+  });
+}
+
+// Close on Escape key
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closeProjectModal();
+    if (modalContainer?.classList.contains("active")) {
+      toggleTestimonialsModal();
+    }
+  }
+});
+
+
+/* ─────────────────────────────────────────────
+   §7. CONTACT FORM VALIDATION
+   ───────────────────────────────────────────── */
+
+const form = $("[data-form]");
+const formInputs = $$("[data-form-input]");
+const formBtn = $("[data-form-btn]");
+
+if (form && formBtn) {
+  form.addEventListener("input", () => {
+    if (form.checkValidity()) {
+      formBtn.removeAttribute("disabled");
+    } else {
+      formBtn.setAttribute("disabled", "");
+    }
+  });
+
+  formBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    alert("Thank you for your interest! This form is being set up.\n\nPlease contact me via WhatsApp or LinkedIn for now. 😊");
+  });
+}
+
+
+/* ─────────────────────────────────────────────
+   §8. CV DOWNLOAD
+   ───────────────────────────────────────────── */
+
+const downloadBtn = $("#downloadPdfBtn");
+
+if (downloadBtn) {
+  downloadBtn.addEventListener("click", () => {
+    const pdfUrl = "./Razwanul_CV.pdf";
+    const anchor = document.createElement("a");
+    anchor.href = pdfUrl;
+    anchor.download = "Razwanul_Hasan_CV.pdf";
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+  });
+}
+
+
+/* ─────────────────────────────────────────────
+   §9. SCROLL REVEAL ANIMATION
+   ───────────────────────────────────────────── */
+
+function initScrollReveal() {
+  const revealElements = $$(".reveal");
+
+  if (!revealElements.length) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+  );
+
+  revealElements.forEach((el) => {
+    // Reset if not already revealed
+    if (!el.classList.contains("revealed")) {
+      observer.observe(el);
     }
   });
 }
 
-// Get the modal
-const modal = document.getElementById("projectModal");
 
-// Get the <span> element that closes the modal
-const span = document.getElementsByClassName("close")[0];
+/* ─────────────────────────────────────────────
+   §10. ANIMATED SKILL BARS
+   ───────────────────────────────────────────── */
 
-// Function to open the modal
-function openModal(imageSrc, bodyContent) {
-  document.getElementById("modalImg").src = imageSrc;
-  document.getElementById("modalBody").innerHTML = bodyContent;
-  modal.style.display = "block";
+function animateSkillBars() {
+  const skillFills = $$(".skill-progress-fill");
+
+  skillFills.forEach((fill) => {
+    const width = fill.dataset.width;
+    if (width) {
+      // Reset first for re-animation
+      fill.style.width = "0%";
+      setTimeout(() => {
+        fill.style.width = width + "%";
+      }, 100);
+    }
+  });
 }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+/* ─────────────────────────────────────────────
+   §11. STATS COUNTER ANIMATION
+   ───────────────────────────────────────────── */
+
+function animateStats() {
+  const statNumbers = $$(".stat-number");
+
+  statNumbers.forEach((stat) => {
+    const target = parseInt(stat.dataset.count, 10);
+    if (isNaN(target)) return;
+
+    let current = 0;
+    const increment = Math.max(1, Math.floor(target / 30));
+    const duration = 1500;
+    const stepTime = duration / (target / increment);
+
+    stat.textContent = "0";
+
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      stat.textContent = current;
+    }, stepTime);
+  });
+}
+
+
+/* ─────────────────────────────────────────────
+   §12. TYPING EFFECT (Sidebar Title)
+   ───────────────────────────────────────────── */
+
+function initTypingEffect() {
+  const titleEl = $("#typingTitle");
+  if (!titleEl) return;
+
+  const roles = [
+    "Mobile App Developer",
+    "Android Developer",
+    "Flutter Developer",
+    "React Native Developer",
+    "Web Developer",
+  ];
+
+  let roleIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let typingSpeed = 100;
+
+  function type() {
+    const currentRole = roles[roleIndex];
+
+    if (isDeleting) {
+      titleEl.textContent = currentRole.substring(0, charIndex - 1);
+      charIndex--;
+      typingSpeed = 50;
+    } else {
+      titleEl.textContent = currentRole.substring(0, charIndex + 1);
+      charIndex++;
+      typingSpeed = 100;
+    }
+
+    if (!isDeleting && charIndex === currentRole.length) {
+      // Pause at end of word
+      typingSpeed = 2000;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      roleIndex = (roleIndex + 1) % roles.length;
+      typingSpeed = 400;
+    }
+
+    setTimeout(type, typingSpeed);
   }
-};
 
-// Add event listeners to each project item
-const projectItems = document.querySelectorAll(".project-item");
-projectItems.forEach((item) => {
-  item.addEventListener("click", function () {
-    const imageSrc = this.querySelector("img").src;
-    const bodyContent = this.querySelector(".project-category").textContent;
-    openModal(imageSrc, bodyContent);
-  });
+  // Start after a brief delay
+  setTimeout(type, 1000);
+}
+
+
+/* ─────────────────────────────────────────────
+   §13. INITIALIZATION
+   ───────────────────────────────────────────── */
+
+document.addEventListener("DOMContentLoaded", () => {
+  initScrollReveal();
+  initTypingEffect();
+  animateStats();
 });
-
-// Function to handle download button click
-document
-  .getElementById("downloadPdfBtn")
-  .addEventListener("click", function () {
-    // Replace 'path_to_your_pdf_file.pdf' with the actual path to your PDF file
-    const pdfUrl = "/Razwanul_CV.pdf";
-
-    // Create an anchor element
-    const anchorElement = document.createElement("a");
-
-    // Set the href attribute to the PDF URL
-    anchorElement.href = pdfUrl;
-
-    // Set the download attribute to force download
-    anchorElement.download = "/Razwanul_CV.pdf";
-
-    // Append the anchor element to the body
-    document.body.appendChild(anchorElement);
-
-    // Trigger a click event on the anchor element
-    anchorElement.click();
-
-    // Remove the anchor element from the body
-    document.body.removeChild(anchorElement);
-  });
