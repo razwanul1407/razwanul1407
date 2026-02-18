@@ -66,7 +66,7 @@
     "image": "https://play-lh.googleusercontent.com/UTWc3nEiV1kjve0wQ2cwsLnYAPdFxyl-31WHe7penNHgvWna_WoDE9ldjVCPiVlSk325",
     "playstoreUrl": "https://play.google.com/store/apps/details?id=com.realtyproshots.core",
     "appstoreUrl": "",
-    "liveUrl": "",
+    "liveUrl": "https://www.realtyproshots.com",
     "githubUrl": ""
   },
   {
@@ -80,7 +80,7 @@
     "image": "https://play-lh.googleusercontent.com/qRUegSCpBAAKB6uCGUFe8_U6ZInYY3TW0b2BrpDulhYMH9X-df_f2lQfi-ZMtkkLOH5J",
     "playstoreUrl": "https://play.google.com/store/apps/details?id=com.beautisyiaa",
     "appstoreUrl": "https://apps.apple.com/ro/app/beautysiaa/id6480150656",
-    "liveUrl": "",
+    "liveUrl": "https://beautysiaa.com",
     "githubUrl": ""
   },
   {
@@ -108,7 +108,7 @@
     "image": "https://play-lh.googleusercontent.com/HLUzSP98H8lZkdPumww_uMUGszeeXE54Y5s9YknMc-LhtvfNCtBt2Py2fy5xnsMj4Us",
     "playstoreUrl": "https://play.google.com/store/apps/details?id=com.qualityfoods.qial",
     "appstoreUrl": "https://apps.apple.com/us/app/quality-foods-bd/id6462051989",
-    "liveUrl": "",
+    "liveUrl": "https://qualityfoods.com.bd",
     "githubUrl": ""
   },
   {
@@ -122,7 +122,7 @@
     "image": "https://play-lh.googleusercontent.com/F4ldreOqZTGdPVbyBGri_S9fd-zqhAsVPjb0yqj45DtYdrcqsbZws3vIcL69hVdN0DA",
     "playstoreUrl": "https://play.google.com/store/apps/details?id=com.sales.salesapp",
     "appstoreUrl": "",
-    "liveUrl": "",
+    "liveUrl": "https://qualityfoods.com.bd",
     "githubUrl": ""
   },
   {
@@ -136,7 +136,7 @@
     "image": "https://play-lh.googleusercontent.com/cMlkSB6LLc2veZlVvH5OWWr7NVuOsNgocwLXuHOBmiIrbHeWDKAJdb1D06aCa6x3C18",
     "playstoreUrl": "https://play.google.com/store/apps/details?id=com.qualityfoods.qial_delivery",
     "appstoreUrl": "",
-    "liveUrl": "",
+    "liveUrl": "https://qualityfoods.com.bd",
     "githubUrl": ""
   },
   {
@@ -144,9 +144,9 @@
     "title": "QAL Survey",
     "fullTitle": "QAL Survey — Survey Management App (React Native)",
     "category": "mobile applications",
-    "categoryLabel": "React Native Application",
+    "categoryLabel": "Flutter Application",
     "description": "QAL Survey is a mobile survey management app for Quality Integrated Agro Ltd. It enables field teams to conduct surveys, collect data, and submit quality reports from remote locations. Designed for efficient data collection across the supply chain.",
-    "tech": ["React Native", "JavaScript", "REST API", "SQLite"],
+    "tech": ["Flutter", "REST API", "SQLite", "Offline Data Sync", "Data Visualization"],
     "image": "https://play-lh.googleusercontent.com/RMYTkh9rdo7p1kQwagJYlVkh_plXjY8va5HAqJ-rkCnHTDrj0eYbbCJ3NpMr2yPBUCvz5FLGcNjrNruxslcd",
     "playstoreUrl": "https://play.google.com/store/apps/details?id=com.qal.qal_survey",
     "appstoreUrl": "",
@@ -164,21 +164,21 @@
     "image": "https://play-lh.googleusercontent.com/qYIefuLPX2BD43jmafE5doLlwCxaFye51CJtXx95dKwebdPFQUCsb0dWWokohWC9ir2eytRJbon8iW0PF3n4LQ",
     "playstoreUrl": "https://play.google.com/store/apps/details?id=com.erp.quality_group_app",
     "appstoreUrl": "",
-    "liveUrl": "",
+    "liveUrl": "https://www.qfl.com.bd",
     "githubUrl": ""
   },
   {
     "id": "ziarah-ai",
     "title": "Ziarah AI",
-    "fullTitle": "Ziarah AI — Plan & Book Trips (Flutter)",
+    "fullTitle": "Ziarah AI — Plan & Book Trips",
     "category": "mobile applications",
-    "categoryLabel": "Flutter Application",
+    "categoryLabel": "React Native Application",
     "description": "Ziarah AI is an intelligent travel planning and booking app for pilgrimage and religious trips. Powered by AI, the app helps users plan, organise, and book their journeys — from Umrah to Hajj and spiritual tours — with smart itinerary suggestions, booking management, and travel guides.",
-    "tech": ["Flutter", "Dart", "AI/ML", "REST API", "Payment Gateway"],
+    "tech": ["React Native","JavaScript","Chat","Google Maps", "AI/ML", "REST API", "Payment Gateway"],
     "image": "https://play-lh.googleusercontent.com/R6EqpiWPSpoEKfuD7Ad8aogTU7MLKCqErVJvP1Woe-Ufx7oPDZvu4KhpZROb8EYv2E9gGiQVP_62mizxsoYGnOY",
     "playstoreUrl": "https://play.google.com/store/apps/details?id=ai.ziarah.app",
     "appstoreUrl": "https://apps.apple.com/us/app/ziarah-ai-plan-book-trips/id6753644421",
-    "liveUrl": "",
+    "liveUrl": "https://ziarah.ai/en",
     "githubUrl": ""
   },
   {
@@ -192,7 +192,7 @@
     "image": "https://play-lh.googleusercontent.com/Ng2mDkkxCGO--9Eoi2eQ-d_cBcDToLROuiv8ILIzKNL693BYvdcgc0rf8zaH-VcU1Q",
     "playstoreUrl": "https://play.google.com/store/apps/details?id=com.appinionbd.qfl",
     "appstoreUrl": "",
-    "liveUrl": "",
+    "liveUrl": "https://www.qfl.com.bd",
     "githubUrl": ""
   },
   {
