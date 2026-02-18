@@ -700,8 +700,9 @@ main {
 /* Project Links in Modal */
 .project-modal-links {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   margin-top: 15px;
+  flex-wrap: wrap;
 }
 
 .project-modal-link {
@@ -713,6 +714,7 @@ main {
   font-size: var(--fs-7);
   font-weight: var(--fw-500);
   transition: var(--transition-1);
+  text-decoration: none;
 }
 
 .project-modal-link.github {
@@ -726,13 +728,28 @@ main {
   color: var(--smoky-black);
 }
 
+.project-modal-link.playstore {
+  background: #01875f;
+  color: #ffffff;
+  border: none;
+}
+
+.project-modal-link.appstore {
+  background: #1c1c1e;
+  color: #ffffff;
+  border: 1px solid #3a3a3c;
+}
+
 .project-modal-link:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-2);
+  opacity: 0.9;
 }
 
-.project-modal-link ion-icon {
+.project-modal-link ion-icon,
+.project-modal-link svg {
   font-size: 16px;
+  flex-shrink: 0;
 }
 
 
@@ -1347,6 +1364,13 @@ main {
   height: 100%;
   object-fit: cover;
   transition: var(--transition-1);
+}
+
+/* Play Store icon images (square) — center with padding */
+.project-img img[src*="play-lh.googleusercontent.com"] {
+  object-fit: contain;
+  background: hsl(240, 2%, 16%);
+  padding: 20px;
 }
 
 .project-item > a:hover img { transform: scale(1.1); }
