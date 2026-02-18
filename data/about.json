@@ -1,0 +1,54 @@
+{
+  "aboutText": [
+    "Highly skilled and accomplished Mobile Application Developer with <strong>4+ years</strong> of extensive experience in Android and iOS development. Proficient in <strong>Native Android, iOS, Flutter, and React Native</strong> platforms.",
+    "Successfully delivered and maintained <strong>21+ apps</strong> throughout my career. Proven expertise in project management and delivering exceptional mobile solutions. Committed to innovation and staying up-to-date with industry trends to drive continuous improvement."
+  ],
+  "stats": [
+    { "count": 4, "label": "Years Experience" },
+    { "count": 21, "label": "Apps Delivered" },
+    { "count": 5, "label": "Companies" },
+    { "count": 4, "label": "Platforms" }
+  ],
+  "services": [
+    {
+      "icon": "./assets/images/icon-app.svg",
+      "title": "Mobile App Development",
+      "description": "Professional development of applications for iOS and Android using React Native and Flutter."
+    },
+    {
+      "icon": "./assets/images/icon-dev.svg",
+      "title": "Web Development",
+      "description": "High-quality development of websites and web applications at the professional level."
+    },
+    {
+      "icon": "./assets/images/icon-design.svg",
+      "title": "UI/UX Design",
+      "description": "Creating beautiful, intuitive user interfaces with attention to detail and user experience."
+    },
+    {
+      "icon": "./assets/images/icon-photo.svg",
+      "title": "API Integration",
+      "description": "RESTful API design and integration, third-party service connections, and backend communication."
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Sajal Ahmmed",
+      "role": "Business Dev Manager, NexKraft",
+      "avatar": "./assets/images/avatar-1.1.jpg",
+      "text": "I highly recommend Razwanul for his exceptional skills in React Native and Flutter development. His expertise, attention to detail, and commitment to quality greatly contributed to our project's success. Razwan is a valuable asset to any software development team."
+    },
+    {
+      "name": "Mahmud Hassan",
+      "role": "Colleague",
+      "avatar": "./assets/images/avatar-3.3.jpg",
+      "text": "Dedicated, practices team efforts, efficient in time management & project delivery, quick learner, and spreads positivity in his surroundings. He's a great colleague to work with and a great human being."
+    },
+    {
+      "name": "Fahim Hasan",
+      "role": "Colleague",
+      "avatar": "./assets/images/avatar-2.2.jpg",
+      "text": "He is very delicate in his work. I appreciate his effort on learning new things. His dedication to continuous improvement makes him a standout developer."
+    }
+  ]
+}

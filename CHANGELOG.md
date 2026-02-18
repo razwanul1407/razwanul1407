@@ -180,15 +180,114 @@ This document describes every change made to the portfolio project during the re
 ---
 
 ## 🔮 7. Future Recommendations
-1. **Add a backend** for the contact form (e.g., Formspree, Netlify Forms, or EmailJS)
-2. **Add actual blog posts** — link to Medium, Dev.to, or create markdown-based posts
-3. **Add project live links** — link projects to GitHub repos or live demos
-4. **Upload actual CV PDF** — place `Razwanul_CV.pdf` in root directory
-5. **Add dark/light mode toggle** — the architecture supports it via CSS variables
+1. ~~**Add a backend** for the contact form~~ ✅ Done — EmailJS integrated (free, no backend)
+2. ~~**Add actual blog posts**~~ ✅ Done — blog posts now load from `data/blog.json`
+3. ~~**Add project live links**~~ ✅ Done — `githubUrl` and `liveUrl` fields in `data/projects.json`
+4. **Upload actual CV PDF** — ✅ Already exists: `Razwanul_CV.pdf` in root
+5. ~~**Add dark/light mode toggle**~~ ✅ Done — theme toggle with localStorage
 6. **Consider adding a "Clients" section** — showcase company logos you've worked with
 7. **Add Google Analytics** — track portfolio visits
-8. **Add Open Graph meta tags** — better social media sharing previews
+8. **Add Open Graph meta tags** — ✅ Already added in previous redesign
 
 ---
 
-*This documentation was generated as part of the portfolio redesign on February 18, 2026.*
+## 🔄 8. Update 2 — JSON Content Management System (February 18, 2026)
+
+### 8.1 Problem Solved
+- Previously, adding a new project or blog post required editing `index.html` directly
+- No contact form backend — form just showed an alert
+- No dark/light mode toggle
+- All content was hardcoded in HTML
+
+### 8.2 New Architecture
+```
+/
+├── data/                          ← NEW: Content management via JSON
+│   ├── projects.json              ← All portfolio projects (add new ones here!)
+│   ├── blog.json                  ← All blog posts
+│   └── resume.json                ← Experience, education, skills
+├── index.html                     ← Dynamic containers (populated by JS)
+├── assets/
+│   ├── css/style.css              ← Added: Light theme, form status, project links
+│   └── js/script.js               ← Rewritten: JSON loader, EmailJS, theme toggle
+```
+
+### 8.3 How to Add New Content (No Code Knowledge Needed!)
+
+**To add a new project**, edit `data/projects.json`:
+```json
+{
+  "id": "my-new-app",
+  "title": "My New App",
+  "fullTitle": "My New App (Flutter)",
+  "category": "applications",
+  "categoryLabel": "Flutter Application",
+  "description": "Description of the project...",
+  "tech": ["Flutter", "Dart", "Firebase"],
+  "image": "./assets/images/my-new-app.png",
+  "liveUrl": "https://play.google.com/store/apps/...",
+  "githubUrl": "https://github.com/razwanul1407/my-new-app"
+}
+```
+
+**To add a new blog post**, edit `data/blog.json`:
+```json
+{
+  "id": "my-new-post",
+  "title": "My New Blog Post",
+  "category": "Flutter",
+  "date": "2026-03-01",
+  "dateFormatted": "Mar 1, 2026",
+  "image": "./assets/images/blog-7.jpg",
+  "excerpt": "Short description of the post...",
+  "url": "https://medium.com/@razwanulhasan/my-post"
+}
+```
+
+**To update experience/skills**, edit `data/resume.json`.
+
+### 8.4 Changes Made
+
+| File | What Changed |
+|---|---|
+| `data/projects.json` | **NEW** — All 10 portfolio projects as structured JSON |
+| `data/blog.json` | **NEW** — All 6 blog posts as structured JSON |
+| `data/resume.json` | **NEW** — Experience, education, technical skills, tools |
+| `index.html` | Replaced hardcoded resume/portfolio/blog with dynamic containers. Added EmailJS SDK. Added theme toggle button. Added anti-flash theme script. Added form status container. Added project modal links container. |
+| `assets/css/style.css` | Added full light theme (`[data-theme="light"]` overrides). Added theme toggle button styles. Added form status success/error/info styles. Added project modal link button styles. |
+| `assets/js/script.js` | Complete rewrite (18 sections): JSON data loader, dynamic renderers for resume/projects/blog, re-bindable portfolio filter, JSON-aware project modal with GitHub/Live links, EmailJS integration with fallback, dark/light theme toggle with localStorage, all previous features preserved. |
+
+### 8.5 EmailJS Setup (FREE — 200 emails/month)
+
+1. Go to [emailjs.com](https://www.emailjs.com/) → Create free account
+2. **Add Email Service** → Connect your Gmail/Outlook → Copy `SERVICE_ID`
+3. **Create Template** → Use variables: `{{from_name}}`, `{{from_email}}`, `{{message}}` → Copy `TEMPLATE_ID`
+4. **Account → General** → Copy `PUBLIC_KEY`
+5. Open `assets/js/script.js` → Find `EMAILJS_CONFIG` → Replace the 3 values:
+```javascript
+const EMAILJS_CONFIG = {
+  publicKey: "your_actual_public_key",
+  serviceId: "your_actual_service_id",
+  templateId: "your_actual_template_id",
+};
+```
+6. Push to GitHub → Done! Contact form now sends real emails ✉️
+
+### 8.6 Dark/Light Mode
+- Toggle button in sidebar (below CV download)
+- Preference saved in `localStorage` — persists across visits
+- Anti-flash script in `<head>` prevents white flash on dark theme
+- All colors use CSS variables — easy to customize
+
+### 8.7 GitHub Pages Deployment
+This entire portfolio works on **GitHub Pages** with zero configuration:
+- No backend server needed
+- No database needed
+- No build step needed
+- EmailJS handles contact form (free tier: 200 emails/month)
+- JSON files load via `fetch()` — works on any static host
+- Custom domain optional (free `username.github.io` works)
+
+---
+
+*Update 2 documentation added on February 18, 2026.*

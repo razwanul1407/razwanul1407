@@ -1,0 +1,73 @@
+{
+  "experience": [
+    {
+      "title": "Mobile Application Developer",
+      "company": "ZIARAH",
+      "date": "July 2025 — Present",
+      "location": "Remote",
+      "description": "Developing & maintaining in-house software for Ziarah Travel & Tourism using Flutter and React Native for cross-platform application development. Successfully developed 2 mobile applications from scratch."
+    },
+    {
+      "title": "Senior Software Engineer",
+      "company": "Quality Feeds Limited (Quality Group)",
+      "date": "June 2024 — Present",
+      "location": "On-Site",
+      "description": "Develop in-house software using Native Android, Flutter, and React Native for cross-platform application development. Successfully developed 5 mobile applications from scratch."
+    },
+    {
+      "title": "Software Engineer",
+      "company": "Nexkraft Ltd.",
+      "date": "January 2023 — June 2025",
+      "location": "Hybrid",
+      "description": "Developed offshore software for clients using Native Android, Native iOS, Flutter, and React Native. Successfully developed 9 mobile applications from scratch over two and a half years."
+    },
+    {
+      "title": "Junior Software Engineer",
+      "company": "MediLife Solutions Ltd",
+      "date": "January 2021 — January 2023",
+      "location": "Hybrid",
+      "description": "Worked as a full stack developer. Developed ASP .NET Web APIs and mobile applications (Native Android, React Native)."
+    },
+    {
+      "title": "IT Support Engineer",
+      "company": "Hello Doctor's BD Limited",
+      "date": "July 2019 — July 2021",
+      "location": "On-Site",
+      "description": "Provided IT support and technical assistance for the healthcare platform."
+    }
+  ],
+  "education": [
+    {
+      "title": "Bangladesh University of Professionals",
+      "date": "2023 — 2025",
+      "description": "Master of CSE"
+    },
+    {
+      "title": "Varendra University",
+      "date": "2019 — 2022",
+      "description": "Bachelor of CSE"
+    },
+    {
+      "title": "Varendra College",
+      "date": "2016 — 2018",
+      "description": "Science"
+    }
+  ],
+  "technicalSkills": [
+    { "name": "React Native", "level": 90 },
+    { "name": "Native Android", "level": 80 },
+    { "name": "Flutter", "level": 80 },
+    { "name": "iOS (Swift)", "level": 70 },
+    { "name": "JavaScript / TypeScript", "level": 85 },
+    { "name": "Java", "level": 80 },
+    { "name": "Kotlin", "level": 80 },
+    { "name": "Dart", "level": 80 }
+  ],
+  "toolsSkills": [
+    { "name": "Git & GitHub", "level": 95 },
+    { "name": "Android Studio & Xcode", "level": 90 },
+    { "name": "Google Play Console", "level": 95 },
+    { "name": "Apple App Store Connect", "level": 90 },
+    { "name": "Postman / REST APIs", "level": 95 }
+  ]
+}

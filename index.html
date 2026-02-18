@@ -28,6 +28,17 @@
 
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!-- EmailJS SDK (Free — works on GitHub Pages) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- Prevent theme flash on load -->
+  <script>
+    (function() {
+      var theme = localStorage.getItem('portfolio-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
 </head>
 
 <body>
@@ -154,6 +165,15 @@
           </button>
         </div>
 
+        <!-- Theme Toggle -->
+        <div class="theme-toggle-wrapper">
+          <button id="themeToggleBtn" class="theme-toggle-btn" title="Toggle Light/Dark Mode">
+            <ion-icon name="sunny-outline" class="theme-icon-light"></ion-icon>
+            <ion-icon name="moon-outline" class="theme-icon-dark"></ion-icon>
+            <span id="themeLabel">Light Mode</span>
+          </button>
+        </div>
+
       </div>
 
     </aside>
@@ -193,148 +213,29 @@
           <h2 class="h2 article-title">About Me</h2>
         </header>
 
-        <section class="about-text">
-          <p>
-            Highly skilled and accomplished Mobile Application Developer with <strong>4+ years</strong> of extensive experience in 
-            Android and iOS development. Proficient in <strong>Native Android, iOS, Flutter, and React Native</strong> platforms.
-          </p>
-          <p>
-            Successfully delivered and maintained <strong>21+ apps</strong> throughout my career. Proven expertise in project management 
-            and delivering exceptional mobile solutions. Committed to innovation and staying up-to-date with industry trends 
-            to drive continuous improvement.
-          </p>
+        <!-- About Text (loaded from data/about.json) -->
+        <section class="about-text" id="aboutText">
+          <!-- Dynamically loaded -->
         </section>
 
-        <!-- Stats Counter -->
-        <section class="stats-section">
-          <div class="stat-card reveal">
-            <h3 class="stat-number" data-count="4">0</h3>
-            <p class="stat-label">Years Experience</p>
-          </div>
-          <div class="stat-card reveal">
-            <h3 class="stat-number" data-count="21">0</h3>
-            <p class="stat-label">Apps Delivered</p>
-          </div>
-          <div class="stat-card reveal">
-            <h3 class="stat-number" data-count="5">0</h3>
-            <p class="stat-label">Companies</p>
-          </div>
-          <div class="stat-card reveal">
-            <h3 class="stat-number" data-count="4">0</h3>
-            <p class="stat-label">Platforms</p>
-          </div>
+        <!-- Stats Counter (loaded from data/about.json) -->
+        <section class="stats-section" id="statsSection">
+          <!-- Dynamically loaded -->
         </section>
 
-        <!-- Services -->
+        <!-- Services (loaded from data/about.json) -->
         <section class="service">
           <h3 class="h3 service-title">What I'm Doing</h3>
-
-          <ul class="service-list">
-            <li class="service-item reveal">
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-app.svg" alt="Mobile app icon" width="40">
-              </div>
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Mobile App Development</h4>
-                <p class="service-item-text">
-                  Professional development of applications for iOS and Android using React Native and Flutter.
-                </p>
-              </div>
-            </li>
-
-            <li class="service-item reveal">
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-dev.svg" alt="Web development icon" width="40">
-              </div>
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">Web Development</h4>
-                <p class="service-item-text">
-                  High-quality development of websites and web applications at the professional level.
-                </p>
-              </div>
-            </li>
-
-            <li class="service-item reveal">
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-design.svg" alt="Design icon" width="40">
-              </div>
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">UI/UX Design</h4>
-                <p class="service-item-text">
-                  Creating beautiful, intuitive user interfaces with attention to detail and user experience.
-                </p>
-              </div>
-            </li>
-
-            <li class="service-item reveal">
-              <div class="service-icon-box">
-                <img src="./assets/images/icon-photo.svg" alt="API icon" width="40">
-              </div>
-              <div class="service-content-box">
-                <h4 class="h4 service-item-title">API Integration</h4>
-                <p class="service-item-text">
-                  RESTful API design and integration, third-party service connections, and backend communication.
-                </p>
-              </div>
-            </li>
+          <ul class="service-list" id="serviceList">
+            <!-- Dynamically loaded -->
           </ul>
         </section>
 
-        <!-- Testimonials -->
+        <!-- Testimonials (loaded from data/about.json) -->
         <section class="testimonials">
           <h3 class="h3 testimonials-title">Testimonials</h3>
-
-          <ul class="testimonials-list has-scrollbar">
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-1.1.jpg" alt="Sajal Ahmmed" width="60" data-testimonials-avatar>
-                </figure>
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Sajal Ahmmed</h4>
-                <p class="testimonials-item-role">Business Dev Manager, NexKraft</p>
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    I highly recommend Razwanul for his exceptional skills in React Native and Flutter development. 
-                    His expertise, attention to detail, and commitment to quality greatly contributed to our project's success. 
-                    Razwan is a valuable asset to any software development team.
-                  </p>
-                </div>
-              </div>
-            </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-3.3.jpg" alt="Mahmud Hassan" width="60" data-testimonials-avatar>
-                </figure>
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Mahmud Hassan</h4>
-                <p class="testimonials-item-role">Colleague</p>
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    Dedicated, practices team efforts, efficient in time management & project delivery, quick learner, 
-                    and spreads positivity in his surroundings. He's a great colleague to work with and a great human being.
-                  </p>
-                </div>
-              </div>
-            </li>
-
-            <li class="testimonials-item">
-              <div class="content-card" data-testimonials-item>
-                <figure class="testimonials-avatar-box">
-                  <img src="./assets/images/avatar-2.2.jpg" alt="Fahim Hasan" width="60" data-testimonials-avatar>
-                </figure>
-                <h4 class="h4 testimonials-item-title" data-testimonials-title>Fahim Hasan</h4>
-                <p class="testimonials-item-role">Colleague</p>
-                <div class="testimonials-text" data-testimonials-text>
-                  <p>
-                    He is very delicate in his work. I appreciate his effort on learning new things. 
-                    His dedication to continuous improvement makes him a standout developer.
-                  </p>
-                </div>
-              </div>
-            </li>
-
+          <ul class="testimonials-list has-scrollbar" id="testimonialsList">
+            <!-- Dynamically loaded -->
           </ul>
         </section>
 
@@ -372,242 +273,45 @@
           <h2 class="h2 article-title">Resume</h2>
         </header>
 
-        <!-- Experience -->
-        <section class="timeline">
+        <!-- Experience (loaded from data/resume.json) -->
+        <section class="timeline" id="experienceSection">
           <div class="title-wrapper">
             <div class="icon-box">
               <ion-icon name="briefcase-outline"></ion-icon>
             </div>
             <h3 class="h3">Experience</h3>
           </div>
-
-          <ol class="timeline-list">
-
-            <li class="timeline-item reveal">
-              <h4 class="h4 timeline-item-title">Mobile Application Developer</h4>
-              <span class="timeline-company">ZIARAH</span>
-              <span class="timeline-date">July 2025 — Present</span>
-              <span class="timeline-location">
-                <ion-icon name="location-outline"></ion-icon> Remote
-              </span>
-              <p class="timeline-text">
-                Developing & maintaining in-house software for Ziarah Travel & Tourism using Flutter and React Native 
-                for cross-platform application development. Successfully developed 2 mobile applications from scratch.
-              </p>
-            </li>
-
-            <li class="timeline-item reveal">
-              <h4 class="h4 timeline-item-title">Senior Software Engineer</h4>
-              <span class="timeline-company">Quality Feeds Limited (Quality Group)</span>
-              <span class="timeline-date">June 2024 — Present</span>
-              <span class="timeline-location">
-                <ion-icon name="location-outline"></ion-icon> On-Site
-              </span>
-              <p class="timeline-text">
-                Develop in-house software using Native Android, Flutter, and React Native for cross-platform 
-                application development. Successfully developed 5 mobile applications from scratch.
-              </p>
-            </li>
-
-            <li class="timeline-item reveal">
-              <h4 class="h4 timeline-item-title">Software Engineer</h4>
-              <span class="timeline-company">Nexkraft Ltd.</span>
-              <span class="timeline-date">January 2023 — June 2025</span>
-              <span class="timeline-location">
-                <ion-icon name="location-outline"></ion-icon> Hybrid
-              </span>
-              <p class="timeline-text">
-                Developed offshore software for clients using Native Android, Native iOS, Flutter, and React Native. 
-                Successfully developed 9 mobile applications from scratch over two and a half years.
-              </p>
-            </li>
-
-            <li class="timeline-item reveal">
-              <h4 class="h4 timeline-item-title">Junior Software Engineer</h4>
-              <span class="timeline-company">MediLife Solutions Ltd</span>
-              <span class="timeline-date">January 2021 — January 2023</span>
-              <span class="timeline-location">
-                <ion-icon name="location-outline"></ion-icon> Hybrid
-              </span>
-              <p class="timeline-text">
-                Worked as a full stack developer. Developed ASP .NET Web APIs and mobile applications 
-                (Native Android, React Native).
-              </p>
-            </li>
-
-            <li class="timeline-item reveal">
-              <h4 class="h4 timeline-item-title">IT Support Engineer</h4>
-              <span class="timeline-company">Hello Doctor's BD Limited</span>
-              <span class="timeline-date">July 2019 — July 2021</span>
-              <span class="timeline-location">
-                <ion-icon name="location-outline"></ion-icon> On-Site
-              </span>
-              <p class="timeline-text">
-                Provided IT support and technical assistance for the healthcare platform.
-              </p>
-            </li>
-
+          <ol class="timeline-list" id="experienceList">
+            <!-- Dynamically loaded from data/resume.json -->
           </ol>
         </section>
 
-        <!-- Education -->
-        <section class="timeline">
+        <!-- Education (loaded from data/resume.json) -->
+        <section class="timeline" id="educationSection">
           <div class="title-wrapper">
             <div class="icon-box">
               <ion-icon name="school-outline"></ion-icon>
             </div>
             <h3 class="h3">Education</h3>
           </div>
-
-          <ol class="timeline-list">
-            <li class="timeline-item reveal">
-              <h4 class="h4 timeline-item-title">Bangladesh University of Professionals</h4>
-              <span class="timeline-date">2023 — 2025</span>
-              <p class="timeline-text">Master of CSE</p>
-            </li>
-
-            <li class="timeline-item reveal">
-              <h4 class="h4 timeline-item-title">Varendra University</h4>
-              <span class="timeline-date">2019 — 2022</span>
-              <p class="timeline-text">Bachelor of CSE</p>
-            </li>
-
-            <li class="timeline-item reveal">
-              <h4 class="h4 timeline-item-title">Varendra College</h4>
-              <span class="timeline-date">2016 — 2018</span>
-              <p class="timeline-text">Science</p>
-            </li>
+          <ol class="timeline-list" id="educationList">
+            <!-- Dynamically loaded from data/resume.json -->
           </ol>
         </section>
 
-        <!-- Primary Skills -->
-        <section class="skill">
+        <!-- Technical Skills (loaded from data/resume.json) -->
+        <section class="skill" id="technicalSkillsSection">
           <h3 class="h3 skills-title">Technical Skills</h3>
-          <ul class="skills-list content-card">
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">React Native</h5>
-                <data value="90">90%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" data-width="90"></div>
-              </div>
-            </li>
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Native Android</h5>
-                <data value="80">80%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" data-width="80"></div>
-              </div>
-            </li>
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Flutter</h5>
-                <data value="80">80%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" data-width="80"></div>
-              </div>
-            </li>
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">iOS (Swift)</h5>
-                <data value="70">70%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" data-width="70"></div>
-              </div>
-            </li>
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">JavaScript / TypeScript</h5>
-                <data value="85">85%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" data-width="85"></div>
-              </div>
-            </li>
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Java</h5>
-                <data value="80">80%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" data-width="80"></div>
-              </div>
-            </li>
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Kotlin</h5>
-                <data value="80">80%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" data-width="80"></div>
-              </div>
-            </li>
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Dart</h5>
-                <data value="80">80%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" data-width="80"></div>
-              </div>
-            </li>
+          <ul class="skills-list content-card" id="technicalSkillsList">
+            <!-- Dynamically loaded from data/resume.json -->
           </ul>
         </section>
 
-        <!-- Tools & Platforms -->
-        <section class="skill">
+        <!-- Tools & Platforms (loaded from data/resume.json) -->
+        <section class="skill" id="toolsSkillsSection">
           <h3 class="h3 skills-title">Tools & Platforms</h3>
-          <ul class="skills-list content-card">
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Git & GitHub</h5>
-                <data value="95">95%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" data-width="95"></div>
-              </div>
-            </li>
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Android Studio & Xcode</h5>
-                <data value="90">90%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" data-width="90"></div>
-              </div>
-            </li>
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Google Play Console</h5>
-                <data value="95">95%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" data-width="95"></div>
-              </div>
-            </li>
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Apple App Store Connect</h5>
-                <data value="90">90%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" data-width="90"></div>
-              </div>
-            </li>
-            <li class="skills-item">
-              <div class="title-wrapper">
-                <h5 class="h5">Postman / REST APIs</h5>
-                <data value="95">95%</data>
-              </div>
-              <div class="skill-progress-bg">
-                <div class="skill-progress-fill" data-width="95"></div>
-              </div>
-            </li>
+          <ul class="skills-list content-card" id="toolsSkillsList">
+            <!-- Dynamically loaded from data/resume.json -->
           </ul>
         </section>
 
@@ -630,10 +334,10 @@
               <button class="active" data-filter-btn>All</button>
             </li>
             <li class="filter-item">
-              <button data-filter-btn>Applications</button>
+              <button data-filter-btn>Mobile Applications</button>
             </li>
             <li class="filter-item">
-              <button data-filter-btn>Web development</button>
+              <button data-filter-btn>Web Applications</button>
             </li>
           </ul>
 
@@ -650,167 +354,17 @@
                 <button data-select-item>All</button>
               </li>
               <li class="select-item">
-                <button data-select-item>Applications</button>
+                <button data-select-item>Mobile Applications</button>
               </li>
               <li class="select-item">
-                <button data-select-item>Web development</button>
+                <button data-select-item>Web Applications</button>
               </li>
             </ul>
           </div>
 
-          <!-- Project Grid -->
-          <ul class="project-list">
-
-            <li class="project-item active" data-filter-item data-category="applications">
-              <a href="#" class="project-link" data-project-title="Truck Ease (Flutter)" data-project-desc="Truck Ease is a user-friendly mobile application that enables individuals to easily book trucks for transportation purposes. Similar to popular ride-sharing apps, users can request a truck for moving or delivering items. Truck drivers using the app can accept these requests, facilitating a convenient process for both parties." data-project-tech="Flutter, Dart, Firebase, Google Maps API">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/project-4.png" alt="Truck Ease" loading="lazy">
-                </figure>
-                <div class="project-info">
-                  <h3 class="project-title">Truck Ease</h3>
-                  <p class="project-category">Flutter Application</p>
-                </div>
-              </a>
-            </li>
-
-            <li class="project-item active" data-filter-item data-category="applications">
-              <a href="#" class="project-link" data-project-title="Tamworth24 (Flutter)" data-project-desc="The Dashboard — Home of our innovative app offers users a centralized hub for an immersive and streamlined experience. Stay effortlessly informed with timely notifications, ensuring you never miss a relevant update." data-project-tech="Flutter, Dart, REST API">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/project-8.png" alt="Tamworth24" loading="lazy">
-                </figure>
-                <div class="project-info">
-                  <h3 class="project-title">Tamworth24</h3>
-                  <p class="project-category">Flutter Application</p>
-                </div>
-              </a>
-            </li>
-
-            <li class="project-item active" data-filter-item data-category="applications">
-              <a href="#" class="project-link" data-project-title="Realty Pro Shots (React Native)" data-project-desc="This app is perfect for Real estate agents, remodelers, interior designers, builders, and anyone else that takes their own real estate photos and is looking to take their real estate photography to the next level!" data-project-tech="React Native, JavaScript, Camera API">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/project-10.jpg" alt="Realty Pro Shots" loading="lazy">
-                </figure>
-                <div class="project-info">
-                  <h3 class="project-title">Realty Pro Shots</h3>
-                  <p class="project-category">React Native Application</p>
-                </div>
-              </a>
-            </li>
-
-            <li class="project-item active" data-filter-item data-category="applications">
-              <a href="#" class="project-link" data-project-title="Pujam Pandal (React Native)" data-project-desc="Puja Event Management Software. Features include Auctions, Bidding, Pandal Donation, Pandal Creation, and Community Posts for pandal events." data-project-tech="React Native, JavaScript, Node.js, MongoDB">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/project-11.jpg" alt="Pujam Pandal" loading="lazy">
-                </figure>
-                <div class="project-info">
-                  <h3 class="project-title">Pujam Pandal</h3>
-                  <p class="project-category">React Native Application</p>
-                </div>
-              </a>
-            </li>
-
-            <li class="project-item active" data-filter-item data-category="applications">
-              <a href="#" class="project-link" data-project-title="Vip Satta (Native Android)" data-project-desc="A gaming application built with Native Android, featuring real-time bidding and gaming mechanics." data-project-tech="Java, Android SDK, Firebase">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/project-12.jpg" alt="Vip Satta" loading="lazy">
-                </figure>
-                <div class="project-info">
-                  <h3 class="project-title">Vip Satta</h3>
-                  <p class="project-category">Native Android Application</p>
-                </div>
-              </a>
-            </li>
-
-            <li class="project-item active" data-filter-item data-category="applications">
-              <a href="#" class="project-link" data-project-title="MyC2i (React Native)" data-project-desc="This app mainly works related to Islamic dawat. It deals with nearby mosques and various Islamic hadiths, dawat-related discussions. Users can donate to specific mosques or madrasas." data-project-tech="React Native, JavaScript, REST API, Payment Gateway">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/project-13.jpg" alt="MyC2i" loading="lazy">
-                </figure>
-                <div class="project-info">
-                  <h3 class="project-title">MyC2i</h3>
-                  <p class="project-category">React Native Application</p>
-                </div>
-              </a>
-            </li>
-
-            <li class="project-item active" data-filter-item data-category="applications">
-              <a href="#" class="project-link" data-project-title="eDoctor (React Native)" data-project-desc="This project is an Android Mobile Application which allows users to obtain information about doctors. The app can also save all information related to the treatment of patients." data-project-tech="React Native, JavaScript, REST API, SQLite">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/project-14.jpg" alt="eDoctor" loading="lazy">
-                </figure>
-                <div class="project-info">
-                  <h3 class="project-title">eDoctor</h3>
-                  <p class="project-category">React Native Application</p>
-                </div>
-              </a>
-            </li>
-
-            <li class="project-item active" data-filter-item data-category="applications">
-              <a href="#" class="project-link" data-project-title="Patient's Integrated Medical Info System (Native Android)" data-project-desc="An Android Mobile Application which allows users to obtain information about doctors and hospitals nearby. The app saves all information related to patient treatment history." data-project-tech="Java, Android SDK, SQLite, Google Maps">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/project-15.jpg" alt="PIMIS" loading="lazy">
-                </figure>
-                <div class="project-info">
-                  <h3 class="project-title">PIMIS</h3>
-                  <p class="project-category">Native Android Application</p>
-                </div>
-              </a>
-            </li>
-
-            <li class="project-item active" data-filter-item data-category="web development">
-              <a href="#" class="project-link" data-project-title="Summary — Web Application" data-project-desc="A web development project showcasing modern frontend techniques and responsive design." data-project-tech="HTML, CSS, JavaScript">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/project-7.png" alt="Summary" loading="lazy">
-                </figure>
-                <div class="project-info">
-                  <h3 class="project-title">Summary</h3>
-                  <p class="project-category">Web Development</p>
-                </div>
-              </a>
-            </li>
-
-            <li class="project-item active" data-filter-item data-category="web development">
-              <a href="#" class="project-link" data-project-title="Finance — Web Application" data-project-desc="A finance management web application with dashboard and data visualization features." data-project-tech="HTML, CSS, JavaScript, Chart.js">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/project-1.jpg" alt="Finance" loading="lazy">
-                </figure>
-                <div class="project-info">
-                  <h3 class="project-title">Finance</h3>
-                  <p class="project-category">Web Development</p>
-                </div>
-              </a>
-            </li>
-
+          <!-- Project Grid (loaded from data/projects.json) -->
+          <ul class="project-list" id="projectList">
+            <!-- Dynamically loaded from data/projects.json -->
           </ul>
         </section>
 
@@ -826,128 +380,8 @@
         </header>
 
         <section class="blog-posts">
-          <ul class="blog-posts-list">
-
-            <li class="blog-post-item reveal">
-              <a href="#">
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-1.jpg" alt="React Native vs Flutter" loading="lazy">
-                </figure>
-                <div class="blog-content">
-                  <div class="blog-meta">
-                    <p class="blog-category">Mobile Dev</p>
-                    <span class="dot"></span>
-                    <time datetime="2025-12-15">Dec 15, 2025</time>
-                  </div>
-                  <h3 class="h3 blog-item-title">React Native vs Flutter: My Experience After 4+ Years</h3>
-                  <p class="blog-text">
-                    After building 21+ apps across both frameworks, here's my honest comparison on performance, 
-                    developer experience, and when to choose which.
-                  </p>
-                </div>
-              </a>
-            </li>
-
-            <li class="blog-post-item reveal">
-              <a href="#">
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-2.jpg" alt="Clean Architecture in Mobile" loading="lazy">
-                </figure>
-                <div class="blog-content">
-                  <div class="blog-meta">
-                    <p class="blog-category">Architecture</p>
-                    <span class="dot"></span>
-                    <time datetime="2025-10-20">Oct 20, 2025</time>
-                  </div>
-                  <h3 class="h3 blog-item-title">Clean Architecture for Mobile Apps</h3>
-                  <p class="blog-text">
-                    How I structure my mobile projects for scalability and maintainability using clean architecture 
-                    principles with MVVM and Repository patterns.
-                  </p>
-                </div>
-              </a>
-            </li>
-
-            <li class="blog-post-item reveal">
-              <a href="#">
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-3.jpg" alt="App Store Deployment" loading="lazy">
-                </figure>
-                <div class="blog-content">
-                  <div class="blog-meta">
-                    <p class="blog-category">Deployment</p>
-                    <span class="dot"></span>
-                    <time datetime="2025-08-10">Aug 10, 2025</time>
-                  </div>
-                  <h3 class="h3 blog-item-title">From Code to Store: App Deployment Guide</h3>
-                  <p class="blog-text">
-                    A complete guide to deploying mobile apps on Google Play Store and Apple App Store Connect, 
-                    including tips for faster review approval.
-                  </p>
-                </div>
-              </a>
-            </li>
-
-            <li class="blog-post-item reveal">
-              <a href="#">
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-4.jpg" alt="State Management" loading="lazy">
-                </figure>
-                <div class="blog-content">
-                  <div class="blog-meta">
-                    <p class="blog-category">Flutter</p>
-                    <span class="dot"></span>
-                    <time datetime="2025-06-05">Jun 5, 2025</time>
-                  </div>
-                  <h3 class="h3 blog-item-title">State Management in Flutter: BLoC vs Riverpod</h3>
-                  <p class="blog-text">
-                    Comparing the most popular state management solutions in Flutter with practical examples 
-                    from production apps.
-                  </p>
-                </div>
-              </a>
-            </li>
-
-            <li class="blog-post-item reveal">
-              <a href="#">
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-5.jpg" alt="API Integration" loading="lazy">
-                </figure>
-                <div class="blog-content">
-                  <div class="blog-meta">
-                    <p class="blog-category">Backend</p>
-                    <span class="dot"></span>
-                    <time datetime="2025-04-18">Apr 18, 2025</time>
-                  </div>
-                  <h3 class="h3 blog-item-title">Best Practices for REST API Integration</h3>
-                  <p class="blog-text">
-                    How to build robust API layers in mobile apps with proper error handling, caching, 
-                    and offline support strategies.
-                  </p>
-                </div>
-              </a>
-            </li>
-
-            <li class="blog-post-item reveal">
-              <a href="#">
-                <figure class="blog-banner-box">
-                  <img src="./assets/images/blog-6.jpg" alt="Cross-Platform Tips" loading="lazy">
-                </figure>
-                <div class="blog-content">
-                  <div class="blog-meta">
-                    <p class="blog-category">Tips</p>
-                    <span class="dot"></span>
-                    <time datetime="2025-02-28">Feb 28, 2025</time>
-                  </div>
-                  <h3 class="h3 blog-item-title">5 Lessons From Building 21+ Mobile Apps</h3>
-                  <p class="blog-text">
-                    Key takeaways and practical lessons I've learned from years of mobile app development 
-                    across multiple platforms and industries.
-                  </p>
-                </div>
-              </a>
-            </li>
-
+          <ul class="blog-posts-list" id="blogPostsList">
+            <!-- Dynamically loaded from data/blog.json -->
           </ul>
         </section>
       </article>
@@ -1001,16 +435,20 @@
           </a>
         </section>
 
-        <!-- Contact Form -->
+        <!-- Contact Form (EmailJS powered — no backend needed) -->
         <section class="contact-form">
           <h3 class="h3 form-title">Send Me a Message</h3>
 
-          <form action="#" class="form" data-form>
+          <form action="#" class="form" data-form id="contactForm">
             <div class="input-wrapper">
               <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
               <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
             </div>
             <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+            
+            <!-- Form status message -->
+            <div id="formStatus" class="form-status"></div>
+
             <button class="form-btn" type="submit" disabled data-form-btn>
               <ion-icon name="paper-plane"></ion-icon>
               <span>Send Message</span>
@@ -1035,6 +473,7 @@
               <h4>Technologies Used:</h4>
               <div id="modalTech" class="tech-tags"></div>
             </div>
+            <div id="modalLinks" class="project-modal-links"></div>
           </div>
         </div>
       </div>

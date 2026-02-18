@@ -1,0 +1,122 @@
+[
+  {
+    "id": "truck-ease",
+    "title": "Truck Ease",
+    "fullTitle": "Truck Ease (Flutter)",
+    "category": "mobile applications",
+    "categoryLabel": "Flutter Application",
+    "description": "Truck Ease is a user-friendly mobile application that enables individuals to easily book trucks for transportation purposes. Similar to popular ride-sharing apps, users can request a truck for moving or delivering items. Truck drivers using the app can accept these requests, facilitating a convenient process for both parties.",
+    "tech": ["Flutter", "Dart", "Firebase", "Google Maps API"],
+    "image": "./assets/images/project-4.png",
+    "liveUrl": "",
+    "githubUrl": ""
+  },
+  {
+    "id": "tamworth24",
+    "title": "Tamworth24",
+    "fullTitle": "Tamworth24 (Flutter)",
+    "category": "mobile applications",
+    "categoryLabel": "Flutter Application",
+    "description": "The Dashboard — Home of our innovative app offers users a centralized hub for an immersive and streamlined experience. Stay effortlessly informed with timely notifications, ensuring you never miss a relevant update.",
+    "tech": ["Flutter", "Dart", "REST API"],
+    "image": "./assets/images/project-8.png",
+    "liveUrl": "",
+    "githubUrl": ""
+  },
+  {
+    "id": "realty-pro-shots",
+    "title": "Realty Pro Shots",
+    "fullTitle": "Realty Pro Shots (React Native)",
+    "category": "mobile applications",
+    "categoryLabel": "React Native Application",
+    "description": "This app is perfect for Real estate agents, remodelers, interior designers, builders, and anyone else that takes their own real estate photos and is looking to take their real estate photography to the next level!",
+    "tech": ["React Native", "JavaScript", "Camera API"],
+    "image": "./assets/images/project-10.jpg",
+    "liveUrl": "",
+    "githubUrl": ""
+  },
+  {
+    "id": "pujam-pandal",
+    "title": "Pujam Pandal",
+    "fullTitle": "Pujam Pandal (React Native)",
+    "category": "mobile applications",
+    "categoryLabel": "React Native Application",
+    "description": "Puja Event Management Software. Features include Auctions, Bidding, Pandal Donation, Pandal Creation, and Community Posts for pandal events.",
+    "tech": ["React Native", "JavaScript", "Node.js", "MongoDB"],
+    "image": "./assets/images/project-11.jpg",
+    "liveUrl": "",
+    "githubUrl": ""
+  },
+  {
+    "id": "vip-satta",
+    "title": "Vip Satta",
+    "fullTitle": "Vip Satta (Native Android)",
+    "category": "mobile applications",
+    "categoryLabel": "Native Android Application",
+    "description": "A gaming application built with Native Android, featuring real-time bidding and gaming mechanics.",
+    "tech": ["Java", "Android SDK", "Firebase"],
+    "image": "./assets/images/project-12.jpg",
+    "liveUrl": "",
+    "githubUrl": ""
+  },
+  {
+    "id": "myc2i",
+    "title": "MyC2i",
+    "fullTitle": "MyC2i (React Native)",
+    "category": "mobile applications",
+    "categoryLabel": "React Native Application",
+    "description": "This app mainly works related to Islamic dawat. It deals with nearby mosques and various Islamic hadiths, dawat-related discussions. Users can donate to specific mosques or madrasas.",
+    "tech": ["React Native", "JavaScript", "REST API", "Payment Gateway"],
+    "image": "./assets/images/project-13.jpg",
+    "liveUrl": "",
+    "githubUrl": ""
+  },
+  {
+    "id": "edoctor",
+    "title": "eDoctor",
+    "fullTitle": "eDoctor (React Native)",
+    "category": "mobile applications",
+    "categoryLabel": "React Native Application",
+    "description": "This project is an Android Mobile Application which allows users to obtain information about doctors. The app can also save all information related to the treatment of patients.",
+    "tech": ["React Native", "JavaScript", "REST API", "SQLite"],
+    "image": "./assets/images/project-14.jpg",
+    "liveUrl": "",
+    "githubUrl": ""
+  },
+  {
+    "id": "pimis",
+    "title": "PIMIS",
+    "fullTitle": "Patient's Integrated Medical Info System (Native Android)",
+    "category": "mobile applications",
+    "categoryLabel": "Native Android Application",
+    "description": "An Android Mobile Application which allows users to obtain information about doctors and hospitals nearby. The app saves all information related to patient treatment history.",
+    "tech": ["Java", "Android SDK", "SQLite", "Google Maps"],
+    "image": "./assets/images/project-15.jpg",
+    "liveUrl": "",
+    "githubUrl": ""
+  },
+  {
+    "id": "summary",
+    "title": "Summary",
+    "fullTitle": "Summary — Web Application",
+    "category": "web applications",
+    "categoryLabel": "Web Application",
+    "description": "A web development project showcasing modern frontend techniques and responsive design.",
+    "tech": ["HTML", "CSS", "JavaScript"],
+    "image": "./assets/images/project-7.png",
+    "liveUrl": "",
+    "githubUrl": ""
+  },
+  {
+    "id": "finance",
+    "title": "Finance",
+    "fullTitle": "Finance — Web Application",
+    "category": "web applications",
+    "categoryLabel": "Web Application",
+    "description": "A finance management web application with dashboard and data visualization features.",
+    "tech": ["HTML", "CSS", "JavaScript", "Chart.js"],
+    "image": "./assets/images/project-1.jpg",
+    "liveUrl": "",
+    "githubUrl": ""
+  }
+]

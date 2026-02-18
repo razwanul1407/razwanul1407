@@ -1,0 +1,62 @@
+[
+  {
+    "id": "react-native-vs-flutter",
+    "title": "React Native vs Flutter: My Experience After 4+ Years",
+    "category": "Mobile Dev",
+    "date": "2025-12-15",
+    "dateFormatted": "Dec 15, 2025",
+    "image": "./assets/images/blog-1.jpg",
+    "excerpt": "After building 21+ apps across both frameworks, here's my honest comparison on performance, developer experience, and when to choose which.",
+    "url": "#"
+  },
+  {
+    "id": "clean-architecture-mobile",
+    "title": "Clean Architecture for Mobile Apps",
+    "category": "Architecture",
+    "date": "2025-10-20",
+    "dateFormatted": "Oct 20, 2025",
+    "image": "./assets/images/blog-2.jpg",
+    "excerpt": "How I structure my mobile projects for scalability and maintainability using clean architecture principles with MVVM and Repository patterns.",
+    "url": "#"
+  },
+  {
+    "id": "app-deployment-guide",
+    "title": "From Code to Store: App Deployment Guide",
+    "category": "Deployment",
+    "date": "2025-08-10",
+    "dateFormatted": "Aug 10, 2025",
+    "image": "./assets/images/blog-3.jpg",
+    "excerpt": "A complete guide to deploying mobile apps on Google Play Store and Apple App Store Connect, including tips for faster review approval.",
+    "url": "#"
+  },
+  {
+    "id": "flutter-state-management",
+    "title": "State Management in Flutter: BLoC vs Riverpod",
+    "category": "Flutter",
+    "date": "2025-06-05",
+    "dateFormatted": "Jun 5, 2025",
+    "image": "./assets/images/blog-4.jpg",
+    "excerpt": "Comparing the most popular state management solutions in Flutter with practical examples from production apps.",
+    "url": "#"
+  },
+  {
+    "id": "rest-api-best-practices",
+    "title": "Best Practices for REST API Integration",
+    "category": "Backend",
+    "date": "2025-04-18",
+    "dateFormatted": "Apr 18, 2025",
+    "image": "./assets/images/blog-5.jpg",
+    "excerpt": "How to build robust API layers in mobile apps with proper error handling, caching, and offline support strategies.",
+    "url": "#"
+  },
+  {
+    "id": "lessons-from-21-apps",
+    "title": "5 Lessons From Building 21+ Mobile Apps",
+    "category": "Tips",
+    "date": "2025-02-28",
+    "dateFormatted": "Feb 28, 2025",
+    "image": "./assets/images/blog-6.jpg",
+    "excerpt": "Key takeaways and practical lessons I've learned from years of mobile app development across multiple platforms and industries.",
+    "url": "#"
+  }
+]

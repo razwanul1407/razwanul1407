@@ -516,6 +516,225 @@ main {
   transform: translateY(0);
 }
 
+/* Theme Toggle Button */
+.theme-toggle-wrapper {
+  margin-top: 10px;
+  padding: 0 7px;
+}
+
+.theme-toggle-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--border-gradient-onyx);
+  color: var(--light-gray);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-400);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--jet);
+  cursor: pointer;
+  transition: var(--transition-1);
+  position: relative;
+  z-index: 1;
+}
+
+.theme-toggle-btn::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-gradient-jet);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.theme-toggle-btn:hover {
+  color: var(--orange-yellow-crayola);
+}
+
+.theme-toggle-btn ion-icon {
+  font-size: 18px;
+}
+
+/* Show/hide icons based on theme */
+.theme-icon-dark { display: block; }
+.theme-icon-light { display: none; }
+
+[data-theme="light"] .theme-icon-dark { display: none; }
+[data-theme="light"] .theme-icon-light { display: block; }
+
+
+/*-----------------------------------*\
+  LIGHT THEME
+\*-----------------------------------*/
+
+[data-theme="light"] {
+  --smoky-black: hsl(0, 0%, 96%);
+  --eerie-black-1: hsl(0, 0%, 100%);
+  --eerie-black-2: hsl(0, 0%, 100%);
+  --onyx: hsl(0, 0%, 90%);
+  --jet: hsl(0, 0%, 85%);
+  --white-1: hsl(0, 0%, 15%);
+  --white-2: hsl(0, 0%, 20%);
+  --light-gray: hsl(0, 0%, 40%);
+  --light-gray-70: hsla(0, 0%, 40%, 0.7);
+
+  --bg-gradient-onyx: linear-gradient(
+    to bottom right,
+    hsl(0, 0%, 90%) 3%,
+    hsl(0, 0%, 85%) 97%
+  );
+  --bg-gradient-jet: linear-gradient(
+    to bottom right,
+    hsla(0, 0%, 95%, 0.8) 0%,
+    hsla(0, 0%, 100%, 0.9) 100%
+  ), hsl(0, 0%, 98%);
+  --bg-gradient-yellow-1: linear-gradient(
+    to bottom right,
+    hsl(45, 100%, 71%) 0%,
+    hsla(36, 100%, 69%, 0) 50%
+  );
+  --bg-gradient-yellow-2: linear-gradient(
+    135deg,
+    hsla(45, 100%, 71%, 0.15) 0%,
+    hsla(35, 100%, 68%, 0) 59.86%
+  ), hsl(0, 0%, 98%);
+  --border-gradient-onyx: linear-gradient(
+    to bottom right,
+    hsl(0, 0%, 82%) 0%,
+    hsla(0, 0%, 82%, 0) 50%
+  );
+
+  --shadow-1: -4px 8px 24px hsla(0, 0%, 0%, 0.08);
+  --shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.08);
+  --shadow-3: 0 16px 40px hsla(0, 0%, 0%, 0.1);
+  --shadow-4: 0 25px 50px hsla(0, 0%, 0%, 0.06);
+  --shadow-5: 0 24px 80px hsla(0, 0%, 0%, 0.1);
+  --shadow-glow: 0 0 20px hsla(45, 100%, 72%, 0.2);
+}
+
+[data-theme="light"] .sidebar,
+[data-theme="light"] article {
+  border-color: hsl(0, 0%, 85%);
+  box-shadow: 0 4px 24px hsla(0, 0%, 0%, 0.06);
+}
+
+[data-theme="light"] .navbar {
+  background: hsla(0, 0%, 100%, 0.85);
+  border-color: hsl(0, 0%, 88%);
+}
+
+[data-theme="light"] .mapbox iframe {
+  filter: grayscale(0) invert(0);
+}
+
+[data-theme="light"] .form-input {
+  border-color: hsl(0, 0%, 85%);
+  color: hsl(0, 0%, 20%);
+}
+
+[data-theme="light"] .form-input::placeholder {
+  color: hsl(0, 0%, 55%);
+}
+
+[data-theme="light"] body::-webkit-scrollbar-track {
+  background: hsl(0, 0%, 96%);
+}
+
+[data-theme="light"] body::-webkit-scrollbar-thumb {
+  border-color: hsl(0, 0%, 96%);
+  background: hsla(0, 0%, 0%, 0.15);
+}
+
+[data-theme="light"] body::-webkit-scrollbar-thumb:hover {
+  background: hsla(0, 0%, 0%, 0.25);
+}
+
+[data-theme="light"] .project-modal {
+  background: hsla(0, 0%, 100%, 0.85);
+}
+
+[data-theme="light"] .project-modal-close {
+  background: hsla(0, 0%, 0%, 0.1);
+  color: hsl(0, 0%, 20%);
+}
+
+[data-theme="light"] .tech-tag {
+  background: hsl(0, 0%, 95%);
+  border-color: hsl(0, 0%, 85%);
+}
+
+[data-theme="light"] .theme-toggle-btn {
+  border-color: hsl(0, 0%, 85%);
+}
+
+/* Form Status Messages */
+.form-status {
+  margin-bottom: 15px;
+  padding: 0;
+  font-size: var(--fs-7);
+  font-weight: var(--fw-400);
+  border-radius: var(--radius-sm);
+  display: none;
+}
+
+.form-status.show {
+  display: block;
+  padding: 12px 16px;
+}
+
+.form-status.success {
+  background: hsla(142, 71%, 45%, 0.15);
+  color: var(--success-green);
+  border: 1px solid hsla(142, 71%, 45%, 0.3);
+}
+
+.form-status.error {
+  background: hsla(0, 43%, 51%, 0.15);
+  color: var(--bittersweet-shimmer);
+  border: 1px solid hsla(0, 43%, 51%, 0.3);
+}
+
+/* Project Links in Modal */
+.project-modal-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.project-modal-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-500);
+  transition: var(--transition-1);
+}
+
+.project-modal-link.github {
+  background: var(--onyx);
+  color: var(--white-2);
+  border: 1px solid var(--jet);
+}
+
+.project-modal-link.live {
+  background: var(--text-gradient-yellow);
+  color: var(--smoky-black);
+}
+
+.project-modal-link:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-2);
+}
+
+.project-modal-link ion-icon {
+  font-size: 16px;
+}
+
 
 /*-----------------------------------*\
   §6. NAVBAR
