@@ -445,6 +445,13 @@ function bindProjectModal() {
   const modalDescEl = $("#modalDesc");
   const modalTechEl = $("#modalTech");
   const modalLinksEl = $("#modalLinks");
+  const modalHighlightsEl = $("#modalHighlights");
+  const modalHighlightsListEl = $("#modalHighlightsList");
+  const modalCompanionEl = $("#modalCompanion");
+  const modalCompanionLabelEl = $("#modalCompanionLabel");
+  const modalCompanionNameEl = $("#modalCompanionName");
+  const modalCompanionDescEl = $("#modalCompanionDesc");
+  const modalCompanionLinksEl = $("#modalCompanionLinks");
 
   const projectLinks = $$(".project-link");
 
@@ -459,6 +466,43 @@ function bindProjectModal() {
         if (modalImgEl) modalImgEl.src = project.image;
         if (modalTitleEl) modalTitleEl.textContent = project.fullTitle || project.title;
         if (modalDescEl) modalDescEl.textContent = project.description;
+
+        // Key Features / Highlights
+        if (modalHighlightsEl && modalHighlightsListEl) {
+          if (project.highlights && project.highlights.length) {
+            modalHighlightsListEl.innerHTML = project.highlights
+              .map((h) => `<li>${h}</li>`).join("");
+            modalHighlightsEl.style.display = "block";
+          } else {
+            modalHighlightsEl.style.display = "none";
+          }
+        }
+
+        // Companion App
+        if (modalCompanionEl) {
+          if (project.companionApp) {
+            const c = project.companionApp;
+            if (modalCompanionLabelEl) modalCompanionLabelEl.textContent = c.label || "Companion App";
+            if (modalCompanionNameEl) modalCompanionNameEl.textContent = c.name;
+            if (modalCompanionDescEl) modalCompanionDescEl.textContent = c.description;
+            if (modalCompanionLinksEl) {
+              modalCompanionLinksEl.innerHTML = "";
+              if (c.playstoreUrl) {
+                modalCompanionLinksEl.innerHTML += `<a href="${c.playstoreUrl}" class="companion-link playstore" target="_blank" rel="noopener">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M3.18 23.76c.31.17.67.19 1 .08l11.62-6.71L13.1 14.4l-9.92 9.36zm-1.12-21C2.03 3.1 2 3.44 2 3.8v16.4c0 .36.03.7.06 1.04L13.5 12 2.06 2.76zM20.1 9.27l-2.42-1.4-3.03 2.85 3.03 2.85 2.44-1.41c.7-.4.7-1.49-.02-1.89zM4.18.16L15.8 6.87 13.1 9.6 1.48.24C1.8.1 2.15.1 2.47.24l1.71-.08z"/></svg>
+                  Play Store</a>`;
+              }
+              if (c.appstoreUrl) {
+                modalCompanionLinksEl.innerHTML += `<a href="${c.appstoreUrl}" class="companion-link appstore" target="_blank" rel="noopener">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                  App Store</a>`;
+              }
+            }
+            modalCompanionEl.style.display = "block";
+          } else {
+            modalCompanionEl.style.display = "none";
+          }
+        }
 
         // Build tech tags
         if (modalTechEl) {
@@ -582,56 +626,32 @@ function initContactForm() {
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Check if EmailJS is configured
-    if (EMAILJS_CONFIG.publicKey === "YOUR_PUBLIC_KEY") {
-      // Not configured yet — show helpful message
-      showFormStatus(
-        "info",
-        "📧 Contact form is ready! To enable email sending, set up EmailJS (free). See the README for instructions."
-      );
+    const name    = form.fullname.value.trim();
+    const email   = form.email.value.trim();
+    const message = form.message.value.trim();
 
-      // Still show a "thank you" and clear form
-      setTimeout(() => {
-        showFormStatus(
-          "success",
-          "✅ Thank you for your interest! For now, please reach out via WhatsApp or LinkedIn."
-        );
-        form.reset();
-        formBtn.setAttribute("disabled", "");
-      }, 3000);
-      return;
+    // ── 1. Try EmailJS silently in the background ──────────────────
+    if (typeof emailjs !== "undefined" && EMAILJS_CONFIG.publicKey !== "YOUR_PUBLIC_KEY") {
+      emailjs.send(
+        EMAILJS_CONFIG.serviceId,
+        EMAILJS_CONFIG.templateId,
+        { from_name: name, from_email: email, message, reply_to: email }
+      ).catch(() => {}); // silent — WhatsApp is the primary channel
     }
 
-    // EmailJS is configured — send the email
+    // ── 2. Open WhatsApp with pre-filled message ───────────────────
+    const waText = encodeURIComponent(
+      `Hi Razwanul! 👋\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+    );
+    const waUrl = `https://wa.me/8801749237060?text=${waText}`;
+
+    // Open WhatsApp in a new tab
+    window.open(waUrl, "_blank", "noopener");
+
+    // Show success feedback & reset form
+    showFormStatus("success", "✅ WhatsApp opened with your message — just hit Send!");
+    form.reset();
     formBtn.setAttribute("disabled", "");
-    formBtn.querySelector("span").textContent = "Sending...";
-
-    try {
-      // Initialize EmailJS
-      if (typeof emailjs !== "undefined") {
-        emailjs.init(EMAILJS_CONFIG.publicKey);
-
-        const templateParams = {
-          from_name: form.fullname.value,
-          from_email: form.email.value,
-          message: form.message.value,
-        };
-
-        await emailjs.send(
-          EMAILJS_CONFIG.serviceId,
-          EMAILJS_CONFIG.templateId,
-          templateParams
-        );
-
-        showFormStatus("success", "✅ Message sent successfully! I'll get back to you soon.");
-        form.reset();
-      }
-    } catch (err) {
-      console.error("EmailJS error:", err);
-      showFormStatus("error", "❌ Failed to send message. Please try WhatsApp or LinkedIn instead.");
-    }
-
-    formBtn.querySelector("span").textContent = "Send Message";
   });
 }
 
@@ -864,6 +884,11 @@ function initTypingEffect() {
 document.addEventListener("DOMContentLoaded", async () => {
   // 1. Theme (must be first for no flash)
   initThemeToggle();
+
+  // 2. Initialize EmailJS once
+  if (typeof emailjs !== "undefined") {
+    emailjs.init(EMAILJS_CONFIG.publicKey);
+  }
 
   // 2. Load JSON data and render dynamic content
   const [resumeData, projectsJsonData, blogData, aboutData, servicesData] = await Promise.all([
