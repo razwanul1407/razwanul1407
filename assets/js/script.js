@@ -246,6 +246,44 @@ function renderAbout(data) {
 
 
 /* ─────────────────────────────────────────────
+   §5c. RENDER BUSINESS SERVICES (from data/services.json)
+   ───────────────────────────────────────────── */
+
+function renderBusinessServices(data) {
+  if (!data || !Array.isArray(data)) return;
+
+  const list = $("#businessServiceList");
+  if (!list) return;
+
+  list.innerHTML = data.map((svc) => `
+    <li class="biz-service-card reveal">
+      <div class="biz-card-header">
+        <div class="biz-card-icon">
+          <ion-icon name="${svc.icon}"></ion-icon>
+        </div>
+        <div class="biz-card-title-group">
+          <h4 class="biz-card-title">${svc.title}</h4>
+          <p class="biz-card-tagline">${svc.tagline}</p>
+        </div>
+      </div>
+      <p class="biz-card-outcome">${svc.outcome}</p>
+      <ul class="biz-card-deliverables">
+        ${svc.deliverables.map((d) => `<li>${d}</li>`).join("")}
+      </ul>
+      <div class="biz-card-footer">
+        <span class="biz-timeline">
+          <ion-icon name="time-outline"></ion-icon> ${svc.timeline}
+        </span>
+        <div class="biz-tech-tags">
+          ${svc.techTags.map((t) => `<span class="biz-tech-tag">${t}</span>`).join("")}
+        </div>
+      </div>
+    </li>
+  `).join("");
+}
+
+
+/* ─────────────────────────────────────────────
    §6. SIDEBAR TOGGLE (Mobile)
    ───────────────────────────────────────────── */
 
@@ -631,6 +669,35 @@ if (downloadBtn) {
 
 
 /* ─────────────────────────────────────────────
+   §12b. SERVICES PAGE & ABOUT CTA BINDINGS
+   ───────────────────────────────────────────── */
+
+function bindServicesPage() {
+  const startBtn = $("#bizStartProject");
+  if (startBtn) {
+    startBtn.addEventListener("click", () => {
+      const contactNavLink = Array.from($$("[data-nav-link]")).find(
+        (el) => el.textContent.trim().toLowerCase() === "contact"
+      );
+      if (contactNavLink) contactNavLink.click();
+    });
+  }
+}
+
+function bindAboutCTA() {
+  const viewServicesBtn = $("#viewServicesBtn");
+  if (viewServicesBtn) {
+    viewServicesBtn.addEventListener("click", () => {
+      const servicesNavLink = Array.from($$("[data-nav-link]")).find(
+        (el) => el.textContent.trim().toLowerCase() === "services"
+      );
+      if (servicesNavLink) servicesNavLink.click();
+    });
+  }
+}
+
+
+/* ─────────────────────────────────────────────
    §13. DARK / LIGHT THEME TOGGLE
    ───────────────────────────────────────────── */
 
@@ -753,7 +820,7 @@ function initTypingEffect() {
     "Android Developer",
     "Flutter Developer",
     "React Native Developer",
-    "Web Developer",
+    "Full-Stack Developer",
   ];
 
   let roleIndex = 0;
@@ -799,21 +866,25 @@ document.addEventListener("DOMContentLoaded", async () => {
   initThemeToggle();
 
   // 2. Load JSON data and render dynamic content
-  const [resumeData, projectsJsonData, blogData, aboutData] = await Promise.all([
+  const [resumeData, projectsJsonData, blogData, aboutData, servicesData] = await Promise.all([
     loadJSON("./data/resume.json"),
     loadJSON("./data/projects.json"),
     loadJSON("./data/blog.json"),
     loadJSON("./data/about.json"),
+    loadJSON("./data/services.json"),
   ]);
 
   renderAbout(aboutData);
   renderResume(resumeData);
   renderProjects(projectsJsonData);
   renderBlogPosts(blogData);
+  renderBusinessServices(servicesData);
 
   // 3. Initialize interactive features
   initContactForm();
   initScrollReveal();
   initTypingEffect();
   animateStats();
+  bindServicesPage();
+  bindAboutCTA();
 });

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "business-website",
+    "icon": "globe-outline",
+    "title": "Business Website",
+    "tagline": "Your brand online, built to convert",
+    "outcome": "A fast, mobile-first website that builds trust and turns visitors into paying customers.",
+    "deliverables": [
+      "Responsive multi-page website",
+      "SEO foundation & performance optimisation",
+      "Contact form, maps & social media integration"
+    ],
+    "timeline": "1–2 weeks",
+    "techTags": ["Next.js", "Vue.js", "PHP", "HTML/CSS"]
+  },
+  {
+    "id": "web-app",
+    "icon": "code-slash-outline",
+    "title": "Custom Web Application",
+    "tagline": "Automate your workflows",
+    "outcome": "A full-featured web app that replaces repetitive manual work and saves your team hours every day.",
+    "deliverables": [
+      "Authenticated user dashboard",
+      "Database design & REST API",
+      "Admin panel & reporting"
+    ],
+    "timeline": "3–6 weeks",
+    "techTags": ["Node.js", "Next.js", "Vue.js", "PHP", "MySQL"]
+  },
+  {
+    "id": "mobile-app",
+    "icon": "phone-portrait-outline",
+    "title": "Mobile App (iOS & Android)",
+    "tagline": "Put your business in your customers' pocket",
+    "outcome": "A cross-platform mobile app that reaches iOS and Android users from a single codebase — faster and more cost-effective than building two native apps.",
+    "deliverables": [
+      "Flutter or React Native app",
+      "App Store & Play Store submission",
+      "Push notifications & in-app analytics"
+    ],
+    "timeline": "4–8 weeks",
+    "techTags": ["Flutter", "React Native", "Firebase", "REST API"]
+  },
+  {
+    "id": "maintenance",
+    "icon": "construct-outline",
+    "title": "Maintenance & Integrations",
+    "tagline": "Keep your product fast and up to date",
+    "outcome": "Ongoing bug fixes, performance upgrades, security patches, and third-party API integrations as your business grows.",
+    "deliverables": [
+      "Monthly performance & uptime report",
+      "Bug fixes & security patches",
+      "Third-party API & payment integrations"
+    ],
+    "timeline": "Ongoing",
+    "techTags": ["Any Stack", "REST API", "Firebase", "Analytics"]
+  }
+]

@@ -196,6 +196,9 @@
             <button class="navbar-link" data-nav-link>Portfolio</button>
           </li>
           <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Services</button>
+          </li>
+          <li class="navbar-item">
             <button class="navbar-link" data-nav-link>Blog</button>
           </li>
           <li class="navbar-item">
@@ -216,6 +219,18 @@
         <!-- About Text (loaded from data/about.json) -->
         <section class="about-text" id="aboutText">
           <!-- Dynamically loaded -->
+        </section>
+
+        <!-- Hire CTA -->
+        <section class="about-cta reveal">
+          <button class="about-cta-btn" id="viewServicesBtn">
+            <ion-icon name="briefcase-outline"></ion-icon>
+            View My Services
+          </button>
+          <a href="https://wa.me/8801749237060" class="about-cta-btn secondary" target="_blank" rel="noopener">
+            <ion-icon name="logo-whatsapp"></ion-icon>
+            Quick Consultation
+          </a>
         </section>
 
         <!-- Stats Counter (loaded from data/about.json) -->
@@ -366,6 +381,89 @@
           <ul class="project-list" id="projectList">
             <!-- Dynamically loaded from data/projects.json -->
           </ul>
+        </section>
+
+      </article>
+
+      <!-- ================================
+           SERVICES PAGE
+      =================================== -->
+      <article class="services" data-page="services">
+
+        <header>
+          <h2 class="h2 article-title">Services</h2>
+        </header>
+
+        <!-- Hero / Intro -->
+        <section class="biz-hero reveal">
+          <p class="biz-hero-text">
+            I build <strong>conversion-focused websites</strong> and <strong>high-performance mobile apps</strong>
+            that help businesses reduce manual work, reach more customers, and grow revenue.
+          </p>
+          <div class="biz-hero-badges">
+            <span class="biz-badge"><ion-icon name="checkmark-circle-outline"></ion-icon> 5+ Years Experience</span>
+            <span class="biz-badge"><ion-icon name="checkmark-circle-outline"></ion-icon> 21+ Apps Delivered</span>
+            <span class="biz-badge"><ion-icon name="checkmark-circle-outline"></ion-icon> iOS &amp; Android</span>
+            <span class="biz-badge"><ion-icon name="checkmark-circle-outline"></ion-icon> Fast Turnaround</span>
+          </div>
+        </section>
+
+        <!-- Service Cards (loaded from data/services.json) -->
+        <section class="biz-services-section">
+          <h3 class="h3 biz-section-title">What I Build For You</h3>
+          <ul class="biz-service-list" id="businessServiceList">
+            <!-- Dynamically loaded from data/services.json -->
+          </ul>
+        </section>
+
+        <!-- How We Work Together -->
+        <section class="biz-process-section">
+          <h3 class="h3 biz-section-title">How We Work Together</h3>
+          <ol class="biz-process-list">
+            <li class="biz-process-item reveal">
+              <div class="biz-process-icon">
+                <ion-icon name="chatbubbles-outline"></ion-icon>
+              </div>
+              <div class="biz-process-body">
+                <h4 class="h4">1. Discovery Call</h4>
+                <p>We discuss your goals, requirements, and timeline — no obligation, no jargon.</p>
+              </div>
+            </li>
+            <li class="biz-process-item reveal">
+              <div class="biz-process-icon">
+                <ion-icon name="build-outline"></ion-icon>
+              </div>
+              <div class="biz-process-body">
+                <h4 class="h4">2. Design &amp; Build</h4>
+                <p>I design and develop your solution with regular progress updates so you're always in the loop.</p>
+              </div>
+            </li>
+            <li class="biz-process-item reveal">
+              <div class="biz-process-icon">
+                <ion-icon name="rocket-outline"></ion-icon>
+              </div>
+              <div class="biz-process-body">
+                <h4 class="h4">3. Launch &amp; Support</h4>
+                <p>We deploy your product together and I provide ongoing support as your business grows.</p>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <!-- CTA Band -->
+        <section class="biz-cta reveal">
+          <h3 class="h3 biz-cta-title">Ready to Start Your Project?</h3>
+          <p class="biz-cta-text">Let's turn your idea into a real product. Reach out and I'll respond within 24 hours.</p>
+          <div class="biz-cta-buttons">
+            <button class="biz-cta-primary" id="bizStartProject">
+              <ion-icon name="paper-plane-outline"></ion-icon>
+              Start Your Project
+            </button>
+            <a href="https://wa.me/8801749237060" class="biz-cta-secondary" target="_blank" rel="noopener">
+              <ion-icon name="logo-whatsapp"></ion-icon>
+              WhatsApp Consultation
+            </a>
+          </div>
         </section>
 
       </article>

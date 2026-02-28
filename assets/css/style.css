@@ -1762,6 +1762,428 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 
 /*-----------------------------------*\
+  §13. BUSINESS SERVICES PAGE
+\*-----------------------------------*/
+
+/* ── About CTA (sits on About page between intro text and stats) ── */
+
+.about-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+
+.about-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: var(--radius-md);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-500);
+  cursor: pointer;
+  transition: transform var(--transition-1), box-shadow var(--transition-1);
+  border: none;
+}
+
+.about-cta-btn:not(.secondary) {
+  background: var(--text-gradient-yellow);
+  color: var(--smoky-black);
+}
+
+.about-cta-btn:not(.secondary):hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.about-cta-btn.secondary {
+  position: relative;
+  background: var(--border-gradient-onyx);
+  color: var(--success-green);
+  border: 1px solid hsla(142, 71%, 45%, 0.4);
+  z-index: 1;
+}
+
+.about-cta-btn.secondary::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-gradient-jet);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.about-cta-btn.secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px hsla(142, 71%, 45%, 0.15);
+}
+
+.about-cta-btn ion-icon { font-size: 16px; }
+
+
+/* ── Services Hero ── */
+
+.biz-hero {
+  position: relative;
+  background: var(--border-gradient-onyx);
+  border-radius: var(--radius-md);
+  padding: 25px 20px;
+  margin-bottom: 35px;
+  z-index: 1;
+}
+
+.biz-hero::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-gradient-jet);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.biz-hero-text {
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-300);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.biz-hero-text strong {
+  color: var(--orange-yellow-crayola);
+  font-weight: var(--fw-500);
+}
+
+.biz-hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.biz-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: hsla(45, 100%, 72%, 0.08);
+  color: var(--orange-yellow-crayola);
+  font-size: var(--fs-8);
+  font-weight: var(--fw-500);
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid hsla(45, 100%, 72%, 0.2);
+  white-space: nowrap;
+}
+
+.biz-badge ion-icon {
+  font-size: 13px;
+  display: inline;
+}
+
+
+/* ── Service Cards ── */
+
+.biz-services-section { margin-bottom: 40px; }
+
+.biz-section-title {
+  margin-bottom: 20px;
+  color: var(--white-2);
+}
+
+.biz-service-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.biz-service-card {
+  position: relative;
+  background: var(--border-gradient-onyx);
+  border-radius: var(--radius-md);
+  padding: 25px;
+  z-index: 1;
+  transition: transform var(--transition-3), box-shadow var(--transition-3);
+}
+
+.biz-service-card::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-gradient-jet);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.biz-service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-3);
+}
+
+.biz-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.biz-card-icon {
+  width: 48px;
+  min-width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  background: hsla(45, 100%, 72%, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--orange-yellow-crayola);
+}
+
+.biz-card-title {
+  color: var(--white-2);
+  font-size: var(--fs-4);
+  font-weight: var(--fw-600);
+  margin-bottom: 3px;
+}
+
+.biz-card-tagline {
+  color: var(--vegas-gold);
+  font-size: var(--fs-8);
+  font-weight: var(--fw-400);
+}
+
+.biz-card-outcome {
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-300);
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.biz-card-deliverables { margin-bottom: 18px; }
+
+.biz-card-deliverables li {
+  position: relative;
+  color: var(--light-gray);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-300);
+  line-height: 1.5;
+  padding: 5px 0 5px 20px;
+  list-style: none;
+}
+
+.biz-card-deliverables li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  color: var(--success-green);
+  font-weight: var(--fw-600);
+  font-size: 12px;
+}
+
+.biz-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 15px;
+  border-top: 1px solid var(--jet);
+}
+
+.biz-timeline {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--light-gray-70);
+  font-size: var(--fs-8);
+  font-weight: var(--fw-300);
+}
+
+.biz-timeline ion-icon {
+  color: var(--orange-yellow-crayola);
+  font-size: 13px;
+}
+
+.biz-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.biz-tech-tag {
+  background: var(--onyx);
+  color: var(--light-gray-70);
+  font-size: var(--fs-8);
+  font-weight: var(--fw-400);
+  padding: 3px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--jet);
+}
+
+
+/* ── Process Steps ── */
+
+.biz-process-section { margin-bottom: 40px; }
+
+.biz-process-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.biz-process-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 20px;
+  background: var(--border-gradient-onyx);
+  border-radius: var(--radius-md);
+  z-index: 1;
+  transition: transform var(--transition-3);
+  list-style: none;
+}
+
+.biz-process-item::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-gradient-jet);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.biz-process-item:hover { transform: translateY(-2px); }
+
+.biz-process-icon {
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background: hsla(45, 100%, 72%, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--orange-yellow-crayola);
+}
+
+.biz-process-body .h4 {
+  font-size: var(--fs-5);
+  margin-bottom: 6px;
+}
+
+.biz-process-body p {
+  color: var(--light-gray);
+  font-size: var(--fs-7);
+  font-weight: var(--fw-300);
+  line-height: 1.5;
+}
+
+
+/* ── CTA Band ── */
+
+.biz-cta {
+  position: relative;
+  background: var(--border-gradient-onyx);
+  border-radius: var(--radius-md);
+  padding: 35px 25px;
+  text-align: center;
+  margin-bottom: 10px;
+  z-index: 1;
+  box-shadow: var(--shadow-glow);
+}
+
+.biz-cta::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-gradient-jet);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.biz-cta-title {
+  color: var(--white-2);
+  margin-bottom: 12px;
+}
+
+.biz-cta-text {
+  color: var(--light-gray);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-300);
+  line-height: 1.6;
+  margin-bottom: 25px;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.biz-cta-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.biz-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 28px;
+  background: var(--text-gradient-yellow);
+  color: var(--smoky-black);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-600);
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: transform var(--transition-1), box-shadow var(--transition-1);
+  width: 100%;
+  max-width: 260px;
+}
+
+.biz-cta-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.biz-cta-primary ion-icon { font-size: 17px; }
+
+.biz-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: transparent;
+  color: var(--success-green);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-500);
+  border-radius: var(--radius-md);
+  border: 1px solid hsla(142, 71%, 45%, 0.4);
+  cursor: pointer;
+  transition: transform var(--transition-1), background var(--transition-1);
+  width: 100%;
+  max-width: 260px;
+}
+
+.biz-cta-secondary:hover {
+  background: hsla(142, 71%, 45%, 0.1);
+  transform: translateY(-2px);
+}
+
+.biz-cta-secondary ion-icon { font-size: 17px; }
+
+[data-theme="light"] .biz-cta {
+  box-shadow: 0 0 20px hsla(45, 100%, 50%, 0.08);
+}
+
+
+/*-----------------------------------*\
   §12. RESPONSIVE DESIGN
 \*-----------------------------------*/
 
@@ -1987,6 +2409,18 @@ textarea.form-input::-webkit-resizer { display: none; }
     text-align: center;
     padding: 25px 15px;
   }
+
+  /* About CTA */
+  .about-cta { gap: 15px; }
+  .about-cta-btn { font-size: var(--fs-6); padding: 13px 26px; }
+  .about-cta-btn ion-icon { font-size: 17px; }
+
+  /* Services Page */
+  .biz-hero { padding: 30px; }
+  .biz-hero-text { font-size: var(--fs-5); }
+  .biz-cta { padding: 45px 30px; }
+  .biz-section-title { margin-bottom: 25px; }
+
 }
 
 /* ─── 768px+ ─── */
@@ -2120,6 +2554,14 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   /* Project Modal */
   .project-modal-img { height: 350px; }
+
+  /* Services Page */
+  .biz-service-list { grid-template-columns: 1fr 1fr; gap: 25px; }
+  .biz-process-list { grid-template-columns: repeat(3, 1fr); }
+  .biz-cta-buttons { flex-direction: row; justify-content: center; }
+  .biz-cta-primary,
+  .biz-cta-secondary { width: auto; max-width: none; }
+
 }
 
 /* ─── 1250px+ ─── */
