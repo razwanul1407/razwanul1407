@@ -1,10 +1,10 @@
 {
   "aboutText": [
-    "Highly skilled and accomplished Mobile Application Developer with <strong>4+ years</strong> of extensive experience in Android and iOS development. Proficient in <strong>Native Android, iOS, Flutter, and React Native</strong> platforms.",
+    "Highly skilled and accomplished Mobile Application Developer with <strong>5+ years</strong> of extensive experience in Android and iOS development. Proficient in <strong>Native Android, iOS, Flutter, and React Native</strong> platforms.",
     "Successfully delivered and maintained <strong>21+ apps</strong> throughout my career. Proven expertise in project management and delivering exceptional mobile solutions. Committed to innovation and staying up-to-date with industry trends to drive continuous improvement."
   ],
   "stats": [
-    { "count": 4, "label": "Years Experience" },
+    { "count": 5, "label": "Years Experience" },
     { "count": 21, "label": "Apps Delivered" },
     { "count": 5, "label": "Companies" },
     { "count": 4, "label": "Platforms" }
