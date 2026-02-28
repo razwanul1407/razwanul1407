@@ -548,9 +548,10 @@
             <div id="formStatus" class="form-status"></div>
 
             <button class="form-btn" type="submit" disabled data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
+              <ion-icon name="logo-whatsapp"></ion-icon>
+              <span>Send via WhatsApp</span>
             </button>
+            <p class="form-whatsapp-hint">Clicking Send will open WhatsApp with your message pre-filled — just tap Send there.</p>
           </form>
         </section>
 
@@ -567,10 +568,41 @@
           <div class="project-modal-details">
             <h3 id="modalTitle" class="project-modal-title"></h3>
             <p id="modalDesc" class="project-modal-desc"></p>
+
+            <!-- Key Features (highlights) -->
+            <div id="modalHighlights" class="project-modal-highlights" style="display:none">
+              <h4 class="project-modal-section-title">
+                <ion-icon name="checkmark-circle-outline"></ion-icon> Key Features
+              </h4>
+              <ul id="modalHighlightsList" class="project-modal-highlights-list"></ul>
+            </div>
+
+            <!-- Companion App (2-app ecosystem) -->
+            <div id="modalCompanion" class="project-modal-companion" style="display:none">
+              <h4 class="project-modal-section-title">
+                <ion-icon name="apps-outline"></ion-icon>
+                <span id="modalCompanionLabel">Companion App</span>
+              </h4>
+              <div class="companion-card">
+                <div class="companion-card-icon">
+                  <ion-icon name="phone-portrait-outline"></ion-icon>
+                </div>
+                <div class="companion-card-body">
+                  <strong id="modalCompanionName"></strong>
+                  <p id="modalCompanionDesc"></p>
+                  <div id="modalCompanionLinks" class="companion-card-links"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tech Stack -->
             <div class="project-modal-tech">
-              <h4>Technologies Used:</h4>
+              <h4 class="project-modal-section-title">
+                <ion-icon name="code-slash-outline"></ion-icon> Tech Stack
+              </h4>
               <div id="modalTech" class="tech-tags"></div>
             </div>
+
             <div id="modalLinks" class="project-modal-links"></div>
           </div>
         </div>
