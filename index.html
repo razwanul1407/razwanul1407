@@ -55,12 +55,15 @@
 
       <div class="sidebar-info">
         <figure class="avatar-box">
-          <img src="./assets/images/my-avatar.jpg" alt="Md Razwanul Hasan" width="80">
+          <img src="./assets/images/my-avatar.jpg" alt="Md Razwanul Hasan" width="160">
         </figure>
 
         <div class="info-content">
           <h1 class="name" title="Md Razwanul Hasan">Md Razwanul Hasan</h1>
           <p class="title" id="typingTitle">Mobile & Web Developer</p>
+          <span class="availability-badge">
+            <span class="avail-dot"></span> Available for hire
+          </span>
         </div>
 
         <button class="info_more-btn" data-sidebar-btn>
@@ -157,6 +160,14 @@
           </li>
         </ul>
 
+        <!-- Hire Me Button -->
+        <div class="hire-me-wrapper">
+          <a href="https://wa.me/8801749237060?text=Hi%20Razwanul!%20I%20want%20to%20hire%20you%20for%20a%20project." class="hire-me-btn" target="_blank" rel="noopener">
+            <ion-icon name="briefcase-outline"></ion-icon>
+            <span>Hire Me</span>
+          </a>
+        </div>
+
         <!-- CV Download Button -->
         <div class="cv-download-wrapper">
           <button id="downloadPdfBtn" class="cv-download-btn">
@@ -231,6 +242,49 @@
             <ion-icon name="logo-whatsapp"></ion-icon>
             Quick Consultation
           </a>
+        </section>
+
+        <!-- Tech Stack Icons -->
+        <section class="tech-stack-section reveal">
+          <h3 class="h3 tech-stack-title">Core Technologies</h3>
+          <div class="tech-stack-grid">
+            <div class="tech-stack-item" title="React Native">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React Native" width="36">
+              <span>React Native</span>
+            </div>
+            <div class="tech-stack-item" title="Flutter">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" width="36">
+              <span>Flutter</span>
+            </div>
+            <div class="tech-stack-item" title="Kotlin">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" alt="Kotlin" width="36">
+              <span>Kotlin</span>
+            </div>
+            <div class="tech-stack-item" title="Swift">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg" alt="Swift" width="36">
+              <span>Swift</span>
+            </div>
+            <div class="tech-stack-item" title="JavaScript">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" width="36">
+              <span>JavaScript</span>
+            </div>
+            <div class="tech-stack-item" title="TypeScript">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" width="36">
+              <span>TypeScript</span>
+            </div>
+            <div class="tech-stack-item" title="Firebase">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase" width="36">
+              <span>Firebase</span>
+            </div>
+            <div class="tech-stack-item" title="Node.js">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" width="36">
+              <span>Node.js</span>
+            </div>
+            <div class="tech-stack-item" title="Git">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" width="36">
+              <span>Git</span>
+            </div>
+          </div>
         </section>
 
         <!-- Stats Counter (loaded from data/about.json) -->
@@ -450,6 +504,58 @@
           </ol>
         </section>
 
+        <!-- FAQ Section -->
+        <section class="faq-section">
+          <h3 class="h3 biz-section-title">Frequently Asked Questions</h3>
+          <ul class="faq-list">
+            <li class="faq-item reveal">
+              <button class="faq-question" data-faq-btn>
+                <span>Do you sign NDAs?</span>
+                <ion-icon name="chevron-down-outline" class="faq-icon"></ion-icon>
+              </button>
+              <div class="faq-answer">
+                <p>Yes, absolutely. I'm happy to sign a Non-Disclosure Agreement before discussing any project details. Client confidentiality is a priority for me.</p>
+              </div>
+            </li>
+            <li class="faq-item reveal">
+              <button class="faq-question" data-faq-btn>
+                <span>How do payments work?</span>
+                <ion-icon name="chevron-down-outline" class="faq-icon"></ion-icon>
+              </button>
+              <div class="faq-answer">
+                <p>I typically work with a 50% upfront deposit and 50% on delivery. For longer projects, I use milestone-based payments. I accept bank transfers and mobile banking (bKash, Nagad, and international wire).</p>
+              </div>
+            </li>
+            <li class="faq-item reveal">
+              <button class="faq-question" data-faq-btn>
+                <span>Do you build for both iOS and Android?</span>
+                <ion-icon name="chevron-down-outline" class="faq-icon"></ion-icon>
+              </button>
+              <div class="faq-answer">
+                <p>Yes. Using Flutter and React Native, I deliver a single codebase that runs natively on both platforms — which means faster delivery and lower cost compared to building two separate apps.</p>
+              </div>
+            </li>
+            <li class="faq-item reveal">
+              <button class="faq-question" data-faq-btn>
+                <span>Will you help submit to the App Store and Play Store?</span>
+                <ion-icon name="chevron-down-outline" class="faq-icon"></ion-icon>
+              </button>
+              <div class="faq-answer">
+                <p>Yes. I have 95%+ approval rates on both Google Play Console and Apple App Store Connect. I handle the full submission process including store listings, screenshots, and compliance checks.</p>
+              </div>
+            </li>
+            <li class="faq-item reveal">
+              <button class="faq-question" data-faq-btn>
+                <span>What happens after launch?</span>
+                <ion-icon name="chevron-down-outline" class="faq-icon"></ion-icon>
+              </button>
+              <div class="faq-answer">
+                <p>I offer ongoing maintenance and support packages. Even after handover, I'm available for bug fixes, OS update compatibility, and new feature development as your business grows.</p>
+              </div>
+            </li>
+          </ul>
+        </section>
+
         <!-- CTA Band -->
         <section class="biz-cta reveal">
           <h3 class="h3 biz-cta-title">Ready to Start Your Project?</h3>
@@ -532,6 +638,12 @@
             </div>
           </a>
         </section>
+
+        <!-- Response time note -->
+        <div class="contact-response-note reveal">
+          <ion-icon name="time-outline"></ion-icon>
+          <p>Usually replies within <strong>24 hours</strong> — often much faster via WhatsApp.</p>
+        </div>
 
         <!-- Contact Form (EmailJS powered — no backend needed) -->
         <section class="contact-form">

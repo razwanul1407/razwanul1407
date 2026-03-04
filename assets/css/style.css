@@ -2805,3 +2805,279 @@ textarea.form-input::-webkit-resizer { display: none; }
   .timeline-text { max-width: 700px; }
 
 }
+
+
+/*-------------------------------------------------------------------*\
+  §NEW COMPONENTS — Added March 2026
+\*-------------------------------------------------------------------*/
+
+/* ─── Availability Badge ─── */
+.availability-badge {
+  display: flex;
+  width: fit-content;
+  margin: 8px auto 0;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 12px;
+  background: hsla(142, 71%, 45%, 0.12);
+  border: 1px solid hsla(142, 71%, 45%, 0.35);
+  border-radius: 20px;
+  font-size: var(--fs-8);
+  font-weight: var(--fw-500);
+  color: var(--success-green);
+  letter-spacing: 0.3px;
+}
+
+.avail-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--success-green);
+  border-radius: 50%;
+  animation: pulse-dot 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { box-shadow: 0 0 0 0 hsla(142, 71%, 45%, 0.5); }
+  50% { box-shadow: 0 0 0 5px hsla(142, 71%, 45%, 0); }
+}
+
+[data-theme="light"] .availability-badge {
+  background: hsla(142, 71%, 35%, 0.1);
+  border-color: hsla(142, 71%, 35%, 0.3);
+  color: hsl(142, 60%, 32%);
+}
+
+/* ─── Hire Me Button ─── */
+.hire-me-wrapper {
+  margin-top: 16px;
+  padding: 0 7px;
+}
+
+.hire-me-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, hsl(142, 71%, 40%), hsl(160, 60%, 38%));
+  color: var(--white-1);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-600);
+  border-radius: var(--radius-md);
+  transition: transform var(--transition-1), box-shadow var(--transition-1);
+  text-decoration: none;
+}
+
+.hire-me-btn ion-icon { font-size: 20px; }
+
+.hire-me-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px hsla(142, 71%, 45%, 0.35);
+  color: var(--white-1);
+}
+
+[data-theme="light"] .hire-me-btn { color: #fff; }
+
+/* ─── Tech Stack Section ─── */
+.tech-stack-section {
+  margin-bottom: 30px;
+}
+
+.tech-stack-title {
+  margin-bottom: 18px;
+}
+
+.tech-stack-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.tech-stack-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 8px;
+  background: var(--border-gradient-onyx);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--jet);
+  transition: transform var(--transition-1), border-color var(--transition-1), box-shadow var(--transition-1);
+  position: relative;
+  z-index: 1;
+}
+
+.tech-stack-item::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-gradient-jet);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.tech-stack-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--orange-yellow-crayola);
+  box-shadow: var(--shadow-glow);
+}
+
+.tech-stack-item img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.tech-stack-item span {
+  font-size: var(--fs-8);
+  font-weight: var(--fw-500);
+  color: var(--light-gray);
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (min-width: 580px) {
+  .tech-stack-grid { grid-template-columns: repeat(5, 1fr); }
+}
+
+@media (min-width: 1250px) {
+  .tech-stack-grid { grid-template-columns: repeat(9, 1fr); }
+}
+
+/* ─── Platform Badges on Project Cards ─── */
+.project-platform-badges {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+
+.platform-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: var(--fw-500);
+  line-height: 1.4;
+}
+
+.platform-badge.android {
+  background: hsla(142, 65%, 45%, 0.15);
+  color: hsl(142, 65%, 55%);
+  border: 1px solid hsla(142, 65%, 45%, 0.3);
+}
+
+.platform-badge.ios {
+  background: hsla(210, 100%, 60%, 0.12);
+  color: hsl(210, 80%, 65%);
+  border: 1px solid hsla(210, 100%, 60%, 0.25);
+}
+
+.platform-badge.web {
+  background: hsla(45, 100%, 72%, 0.1);
+  color: var(--orange-yellow-crayola);
+  border: 1px solid hsla(45, 100%, 72%, 0.25);
+}
+
+/* ─── FAQ Section ─── */
+.faq-section {
+  margin-bottom: 40px;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.faq-item {
+  border: 1px solid var(--jet);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--border-gradient-onyx);
+  position: relative;
+  z-index: 1;
+}
+
+.faq-item::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-gradient-jet);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  color: var(--white-2);
+  font-size: var(--fs-6);
+  font-weight: var(--fw-500);
+  cursor: pointer;
+  transition: color var(--transition-1);
+  text-align: left;
+}
+
+.faq-question:hover { color: var(--orange-yellow-crayola); }
+
+.faq-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  transition: transform var(--transition-3);
+  color: var(--light-gray-70);
+}
+
+.faq-item.open .faq-icon { transform: rotate(180deg); }
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding var(--transition-1);
+  padding: 0 20px;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 200px;
+  padding: 0 20px 16px;
+}
+
+.faq-answer p {
+  font-size: var(--fs-6);
+  font-weight: var(--fw-300);
+  color: var(--light-gray);
+  line-height: 1.7;
+}
+
+/* ─── Contact Response Note ─── */
+.contact-response-note {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  background: hsla(45, 100%, 72%, 0.08);
+  border: 1px solid hsla(45, 100%, 72%, 0.2);
+  border-radius: var(--radius-md);
+  color: var(--light-gray);
+  font-size: var(--fs-7);
+}
+
+.contact-response-note ion-icon {
+  font-size: 20px;
+  color: var(--orange-yellow-crayola);
+  flex-shrink: 0;
+}
+
+.contact-response-note strong {
+  color: var(--orange-yellow-crayola);
+}
+

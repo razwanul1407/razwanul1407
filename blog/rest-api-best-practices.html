@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Best Practices for REST API Integration — Razwanul Hasan</title>
+  <meta name="description" content="How to build robust API layers in mobile apps with proper error handling, caching, and offline support strategies.">
+  <link rel="shortcut icon" href="../assets/images/logo.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    (function() {
+      var theme = localStorage.getItem('portfolio-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <link rel="stylesheet" href="../assets/css/blog.css">
+</head>
+<body>
+
+  <header class="blog-header">
+    <div class="blog-header-inner">
+      <a href="../index.html" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to Portfolio
+      </a>
+      <span class="blog-category-tag">Backend</span>
+    </div>
+  </header>
+
+  <main class="blog-main">
+    <article class="blog-article">
+
+      <div class="blog-article-header">
+        <h1 class="blog-article-title">Best Practices for REST API Integration in Mobile Apps</h1>
+        <div class="blog-meta-bar">
+          <img src="../assets/images/my-avatar.jpg" alt="Razwanul Hasan" class="blog-author-avatar">
+          <div>
+            <p class="blog-author-name">Md Razwanul Hasan</p>
+            <p class="blog-article-date">April 18, 2025 &nbsp;·&nbsp; 11 min read</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-article-body">
+
+        <p class="lead">A leaky API layer is the silent killer of mobile apps. It causes crashes, blank screens, data corruption, and frustrated users. After integrating dozens of APIs across 21+ apps, here's the pattern I use that eliminates nearly all of these problems.</p>
+
+        <h2>1. Use a Typed HTTP Client, Never Raw http</h2>
+        <p>In Flutter, I use <strong>Dio</strong>. In React Native, <strong>Axios</strong>. Both support interceptors, timeout configuration, and request cancellation out of the box. Never use the raw <code>http</code> package or <code>fetch</code> directly in your repository — you lose too much control.</p>
+
+        <pre><code>// Dio setup with interceptors (Flutter)
+final dio = Dio(BaseOptions(
+  baseUrl: 'https://api.yourapp.com/v1/',
+  connectTimeout: const Duration(seconds: 15),
+  receiveTimeout: const Duration(seconds: 30),
+));
+
+// Auth interceptor
+dio.interceptors.add(InterceptorsWrapper(
+  onRequest: (options, handler) async {
+    final token = await SecureStorage.getToken();
+    if (token != null) {
+      options.headers['Authorization'] = 'Bearer $token';
+    }
+    return handler.next(options);
+  },
+  onError: (error, handler) async {
+    if (error.response?.statusCode == 401) {
+      // Refresh token logic here
+      final refreshed = await refreshToken();
+      if (refreshed) return handler.resolve(await _retry(error.requestOptions));
+    }
+    return handler.next(error);
+  },
+));</code></pre>
+
+        <h2>2. Always Model Your Responses</h2>
+        <p>Never use raw <code>Map&lt;String, dynamic&gt;</code> throughout your app. Create model classes with <code>fromJson()</code> factories. This catches breaking API changes at the model parsing layer, not in your UI.</p>
+
+        <pre><code>class UserModel {
+  final int id;
+  final String name;
+  final String email;
+  final String? avatar;
+
+  const UserModel({
+    required this.id,
+    required this.name,
+    required this.email,
+    this.avatar,
+  });
+
+  factory UserModel.fromJson(Map&lt;String, dynamic&gt; json) {
+    return UserModel(
+      id: json['id'] as int,
+      name: json['name'] as String,
+      email: json['email'] as String,
+      avatar: json['avatar_url'] as String?,
+    );
+  }
+}</code></pre>
+
+        <h2>3. Wrap Every API Call in a Result Type</h2>
+        <p>API calls can fail in many ways: no internet, server error, timeout, parsing error. Use a Result/Either type to force callers to handle failures explicitly.</p>
+
+        <pre><code>typedef ApiResult&lt;T&gt; = Either&lt;Failure, T&gt;;
+
+abstract class Failure {
+  final String message;
+  const Failure(this.message);
+}
+
+class NetworkFailure extends Failure {
+  const NetworkFailure() : super('No internet connection. Check your network.');
+}
+
+class ServerFailure extends Failure {
+  final int statusCode;
+  const ServerFailure(this.statusCode)
+      : super('Server error ($statusCode). Please try again.');
+}
+
+class ParseFailure extends Failure {
+  const ParseFailure() : super('Unexpected data received from server.');
+}</code></pre>
+
+        <h2>4. Implement Proper Error Handling in the Repository</h2>
+
+        <pre><code>Future&lt;ApiResult&lt;User&gt;&gt; getUser(int userId) async {
+  try {
+    final response = await dio.get('/users/$userId');
+    final model = UserModel.fromJson(response.data);
+    return Right(model.toEntity());
+  } on DioException catch (e) {
+    if (e.type == DioExceptionType.connectionError) {
+      return const Left(NetworkFailure());
+    }
+    return Left(ServerFailure(e.response?.statusCode ?? 500));
+  } catch (e) {
+    return const Left(ParseFailure());
+  }
+}</code></pre>
+
+        <h2>5. Cache Aggressively, Sync Wisely</h2>
+        <p>Mobile users have intermittent connectivity. Never assume the network is available. My strategy:</p>
+        <ul>
+          <li><strong>Show cached data immediately</strong> while fetching fresh data in background</li>
+          <li>Use <strong>Hive or SQLite</strong> for structured local caching in Flutter</li>
+          <li>Set <strong>TTL (Time To Live)</strong> on cached entries — not everything should be cached forever</li>
+          <li>For list screens: cache the list. For detail screens: cache by ID.</li>
+        </ul>
+
+        <pre><code>Future&lt;ApiResult&lt;List&lt;Product&gt;&gt;&gt; getProducts() async {
+  // 1. Return cached data immediately
+  final cached = await localCache.getProducts();
+  if (cached != null && !cached.isExpired) {
+    return Right(cached.data);
+  }
+
+  // 2. Fetch fresh data
+  final result = await remoteDataSource.getProducts();
+  result.fold(
+    (failure) => null, // Use stale cache if network fails
+    (products) => localCache.saveProducts(products),
+  );
+
+  return result.isRight() ? result : Right(cached?.data ?? []);
+}</code></pre>
+
+        <h2>6. Handle Token Refresh Transparently</h2>
+        <p>JWT tokens expire. Handle this in your Dio/Axios interceptor, not in your screens. The user should never see an authentication error — it should be refreshed silently behind the scenes.</p>
+
+        <h2>7. Pagination: Use Cursor-Based, Not Offset</h2>
+        <p>For long lists, use <strong>cursor-based pagination</strong> (pass the last item's ID or timestamp) rather than offset-based (<code>?page=2&per_page=20</code>). Offset pagination has race conditions when items are inserted — users can see duplicates or miss items.</p>
+
+        <h2>8. Implement Request Deduplication</h2>
+        <p>If a user taps a button quickly, don't fire duplicate API requests. Cancel the in-flight request before firing a new one, or debounce the trigger.</p>
+
+        <blockquote>A robust API layer is invisible to the user — they just experience a fast, reliable app. That's exactly what we're building for.</blockquote>
+
+      </div>
+
+      <div class="blog-article-footer">
+        <a href="../index.html" class="back-link">← More Articles</a>
+        <div class="blog-share">
+          <a href="https://www.linkedin.com/in/mdrazwanulhasan1407" target="_blank" rel="noopener" class="share-btn">Share on LinkedIn</a>
+          <a href="https://twitter.com/RazwanulHasan" target="_blank" rel="noopener" class="share-btn">Share on X</a>
+        </div>
+      </div>
+
+    </article>
+  </main>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

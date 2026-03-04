@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clean Architecture for Mobile Apps — Razwanul Hasan</title>
+  <meta name="description" content="How I structure my mobile projects for scalability and maintainability using clean architecture principles with MVVM and Repository patterns.">
+  <link rel="shortcut icon" href="../assets/images/logo.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    (function() {
+      var theme = localStorage.getItem('portfolio-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <link rel="stylesheet" href="../assets/css/blog.css">
+</head>
+<body>
+
+  <header class="blog-header">
+    <div class="blog-header-inner">
+      <a href="../index.html" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to Portfolio
+      </a>
+      <span class="blog-category-tag">Architecture</span>
+    </div>
+  </header>
+
+  <main class="blog-main">
+    <article class="blog-article">
+
+      <div class="blog-article-header">
+        <h1 class="blog-article-title">Clean Architecture for Mobile Apps</h1>
+        <div class="blog-meta-bar">
+          <img src="../assets/images/my-avatar.jpg" alt="Razwanul Hasan" class="blog-author-avatar">
+          <div>
+            <p class="blog-author-name">Md Razwanul Hasan</p>
+            <p class="blog-article-date">October 20, 2025 &nbsp;·&nbsp; 10 min read</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-article-body">
+
+        <p class="lead">When I joined my first startup, the codebase was a mess — UI logic mixed with API calls, hardcoded strings everywhere, and no tests. Every feature took three times longer than it should. Since then, I've obsessed over structure. Here's what I've settled on.</p>
+
+        <h2>Why Architecture Matters</h2>
+        <p>A mobile app without architecture is a time bomb. It works fine with 5 screens. By screen 20, you're debugging spaghetti code at 2am. Clean Architecture solves this by separating concerns into layers where each layer has one job and doesn't know what's outside it.</p>
+
+        <h2>The Three Layers</h2>
+
+        <h3>1. Presentation Layer (UI)</h3>
+        <p>This layer contains your screens, widgets/components, and view models. Its only job is to display data and capture user input. It <strong>never</strong> calls the API directly. It <strong>never</strong> has business logic. It talks to the domain layer through use cases.</p>
+        <p>In Flutter, I use <strong>BLoC</strong> here. Each screen has a corresponding Bloc that takes events (user actions) and emits states (what the UI should show). In React Native, I use <strong>custom hooks + React Query</strong>.</p>
+
+        <pre><code>// Flutter BLoC example
+class OrderBloc extends Bloc&lt;OrderEvent, OrderState&gt; {
+  final PlaceOrderUseCase placeOrder;
+
+  OrderBloc({required this.placeOrder}) : super(OrderInitial()) {
+    on&lt;PlaceOrderRequested&gt;((event, emit) async {
+      emit(OrderLoading());
+      final result = await placeOrder(event.orderData);
+      result.fold(
+        (failure) => emit(OrderError(failure.message)),
+        (order) => emit(OrderSuccess(order)),
+      );
+    });
+  }
+}</code></pre>
+
+        <h3>2. Domain Layer (Business Logic)</h3>
+        <p>This is the heart of your app. It contains:</p>
+        <ul>
+          <li><strong>Entities</strong> — Plain data objects (Order, User, Product). No framework dependencies.</li>
+          <li><strong>Use Cases</strong> — Single-responsibility classes that execute one business operation.</li>
+          <li><strong>Repository Interfaces</strong> — Abstract contracts that define what data operations exist. The domain layer doesn't know how data is fetched.</li>
+        </ul>
+        <p>This layer has <strong>zero Flutter/RN dependencies</strong>. It's pure Dart or JavaScript. This makes it trivially testable.</p>
+
+        <h3>3. Data Layer (Data Sources)</h3>
+        <p>This layer implements the repository interfaces from the domain layer. It contains:</p>
+        <ul>
+          <li><strong>Repository Implementations</strong> — Concrete classes that implement domain interfaces</li>
+          <li><strong>Remote Data Sources</strong> — API calls (Dio/Axios, REST)</li>
+          <li><strong>Local Data Sources</strong> — SQLite, SharedPreferences, Hive, AsyncStorage</li>
+          <li><strong>Models</strong> — JSON-serializable versions of domain entities</li>
+        </ul>
+
+        <h2>Folder Structure I Use</h2>
+
+        <pre><code>lib/
+├── core/
+│   ├── errors/          # Failures, Exceptions
+│   ├── network/         # Dio client, interceptors
+│   └── utils/           # Constants, formatters
+├── features/
+│   └── orders/
+│       ├── data/
+│       │   ├── datasources/
+│       │   ├── models/
+│       │   └── repositories/
+│       ├── domain/
+│       │   ├── entities/
+│       │   ├── repositories/  (interfaces)
+│       │   └── usecases/
+│       └── presentation/
+│           ├── bloc/
+│           ├── pages/
+│           └── widgets/
+└── injection_container.dart  # Dependency injection</code></pre>
+
+        <h2>Dependency Injection</h2>
+        <p>I use <strong>get_it</strong> in Flutter for dependency injection. This means every class receives its dependencies through its constructor — nothing is instantiated inside a class. This makes testing straightforward: just inject mock implementations.</p>
+
+        <h2>Error Handling Pattern</h2>
+        <p>I use <strong>Either&lt;Failure, Success&gt;</strong> from the <code>dartz</code> package (Flutter) or a custom Result type in React Native. Every use case returns an Either — forcing the UI layer to handle both success and failure cases explicitly. No silent failures.</p>
+
+        <h2>Real-World Application</h2>
+        <p>I applied this structure on <strong>BIFLE</strong> (truck booking, 2 companion apps) and <strong>Quality Group ERP</strong>. When new features were requested mid-development, adding them required touching only the relevant feature folder — nothing else broke. That's the payoff of architecture investment upfront.</p>
+
+        <h2>Common Mistakes to Avoid</h2>
+        <ul>
+          <li>Putting API calls directly in a ViewModel/screen widget</li>
+          <li>Using the same model for both API responses and UI display</li>
+          <li>Storing business logic in the repository implementation instead of use cases</li>
+          <li>Skipping interfaces because "it's just one data source for now"</li>
+        </ul>
+
+        <blockquote>Architecture is not about following rules for their own sake. It's about creating the conditions where future-you (or your teammates) can work fast without fear.</blockquote>
+
+      </div>
+
+      <div class="blog-article-footer">
+        <a href="../index.html" class="back-link">← More Articles</a>
+        <div class="blog-share">
+          <a href="https://www.linkedin.com/in/mdrazwanulhasan1407" target="_blank" rel="noopener" class="share-btn">Share on LinkedIn</a>
+          <a href="https://twitter.com/RazwanulHasan" target="_blank" rel="noopener" class="share-btn">Share on X</a>
+        </div>
+      </div>
+
+    </article>
+  </main>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

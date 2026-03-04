@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>From Code to Store: App Deployment Guide — Razwanul Hasan</title>
+  <meta name="description" content="A complete guide to deploying mobile apps on Google Play Store and Apple App Store Connect, including tips for faster review approval.">
+  <link rel="shortcut icon" href="../assets/images/logo.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    (function() {
+      var theme = localStorage.getItem('portfolio-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <link rel="stylesheet" href="../assets/css/blog.css">
+</head>
+<body>
+
+  <header class="blog-header">
+    <div class="blog-header-inner">
+      <a href="../index.html" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to Portfolio
+      </a>
+      <span class="blog-category-tag">Deployment</span>
+    </div>
+  </header>
+
+  <main class="blog-main">
+    <article class="blog-article">
+
+      <div class="blog-article-header">
+        <h1 class="blog-article-title">From Code to Store: App Deployment Guide</h1>
+        <div class="blog-meta-bar">
+          <img src="../assets/images/my-avatar.jpg" alt="Razwanul Hasan" class="blog-author-avatar">
+          <div>
+            <p class="blog-author-name">Md Razwanul Hasan</p>
+            <p class="blog-article-date">August 10, 2025 &nbsp;·&nbsp; 12 min read</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-article-body">
+
+        <p class="lead">I've submitted 21+ apps to both the Google Play Store and Apple App Store Connect, with a <strong>95%+ first-submission approval rate</strong>. Here's everything I know about getting your app live without the painful back-and-forth with reviewers.</p>
+
+        <h2>Before You Build: Account Setup</h2>
+
+        <h3>Google Play Console</h3>
+        <ul>
+          <li>One-time $25 developer fee</li>
+          <li>Business account vs Personal: use Business if you're shipping commercial apps</li>
+          <li>Set up <strong>Google Play App Signing</strong> immediately — don't manage your own keystore if you can avoid it</li>
+          <li>Enable 2-factor authentication</li>
+        </ul>
+
+        <h3>Apple App Store Connect</h3>
+        <ul>
+          <li>$99/year Apple Developer Program fee</li>
+          <li>You need a Mac (or CI/CD service) to build iOS apps</li>
+          <li>Set up your <strong>App Store Connect account</strong> and <strong>Xcode certificates</strong> early — Apple's certificate system can be confusing</li>
+          <li>Create a <strong>Bundle ID</strong> in the Apple Developer portal before starting your project</li>
+        </ul>
+
+        <h2>Flutter: Building Release APK/IPA</h2>
+
+        <pre><code># Android (App Bundle — required for Play Store)
+flutter build appbundle --release
+
+# iOS (Archive via Xcode or command line)
+flutter build ipa --release</code></pre>
+
+        <p>Always use <strong>App Bundle (.aab)</strong> for Play Store — not APK. Google Play will generate optimized APKs per device automatically, reducing download sizes by 20–40%.</p>
+
+        <h2>Signing Your App</h2>
+
+        <h3>Android Keystore</h3>
+        <p>Generate once and <strong>never lose this file</strong>. If you lose your keystore, you cannot update your app on Play Store — you'll need to create a new app listing.</p>
+
+        <pre><code>keytool -genkey -v -keystore my-release-key.jks \
+  -keyalg RSA -keysize 2048 -validity 10000 \
+  -alias my-key-alias</code></pre>
+
+        <p>Store the keystore in a secure location outside your project. Add it to your <code>.gitignore</code>. Store credentials in environment variables or a <code>key.properties</code> file (also gitignored).</p>
+
+        <h2>Play Store Submission Checklist</h2>
+        <ul>
+          <li>✅ App Bundle signed with release keystore</li>
+          <li>✅ Target API level meets Google's current requirement (API 34+ as of 2025)</li>
+          <li>✅ App icon: 512×512 PNG, no alpha transparency on the corners</li>
+          <li>✅ Feature graphic: 1024×500 PNG</li>
+          <li>✅ Screenshots: at least 2 per device type (phone, tablet if applicable)</li>
+          <li>✅ Privacy policy URL (required for any app requesting permissions)</li>
+          <li>✅ Content rating questionnaire completed honestly</li>
+          <li>✅ Data safety form filled out accurately</li>
+          <li>✅ Short and full description written (no keyword stuffing)</li>
+        </ul>
+
+        <h2>App Store Submission Checklist</h2>
+        <ul>
+          <li>✅ Archive built and validated in Xcode with no errors/warnings</li>
+          <li>✅ App icon: 1024×1024 PNG, no alpha channel, no rounded corners (Apple adds them)</li>
+          <li>✅ Screenshots for all required device sizes (iPhone 6.7", 6.5", iPad Pro if needed)</li>
+          <li>✅ App description: max 4000 chars, no markdown, no placeholder text</li>
+          <li>✅ Keywords: 100 chars max, comma-separated</li>
+          <li>✅ Privacy policy URL</li>
+          <li>✅ Support URL</li>
+          <li>✅ Age rating set correctly</li>
+          <li>✅ In-app purchases configured before submission if applicable</li>
+          <li>✅ TestFlight build passes internal testing before App Store submission</li>
+        </ul>
+
+        <h2>Top Reasons Apps Get Rejected</h2>
+
+        <h3>Play Store</h3>
+        <ul>
+          <li>Privacy policy missing (most common)</li>
+          <li>Permissions requested but not used or not explained</li>
+          <li>Targeting old API levels</li>
+          <li>Misleading screenshots or description</li>
+        </ul>
+
+        <h3>App Store</h3>
+        <ul>
+          <li>Broken functionality during review (test on a real device first)</li>
+          <li>Placeholder content left in ("Lorem ipsum", test data)</li>
+          <li>No privacy policy for apps that collect data</li>
+          <li>Login required with no demo credentials provided in review notes</li>
+          <li>App duplicates existing App Store functionality without added value</li>
+        </ul>
+
+        <h2>Tip: Add Review Notes</h2>
+        <p>For App Store, always fill in the <strong>"Notes for App Review"</strong> field. If your app requires login, provide a test account. If it uses special hardware, explain how it works. Apple reviewers use this — it dramatically reduces rejections from misunderstandings.</p>
+
+        <h2>Phased Rollout</h2>
+        <p>Both stores support phased rollout. Use it for major updates — release to 10% of users first, monitor crash rates, then expand. I've caught post-release bugs this way before they hit 100% of my users.</p>
+
+        <blockquote>The most expensive bug is one that reaches all your users simultaneously. Phased rollout is free insurance.</blockquote>
+
+      </div>
+
+      <div class="blog-article-footer">
+        <a href="../index.html" class="back-link">← More Articles</a>
+        <div class="blog-share">
+          <a href="https://www.linkedin.com/in/mdrazwanulhasan1407" target="_blank" rel="noopener" class="share-btn">Share on LinkedIn</a>
+          <a href="https://twitter.com/RazwanulHasan" target="_blank" rel="noopener" class="share-btn">Share on X</a>
+        </div>
+      </div>
+
+    </article>
+  </main>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React Native vs Flutter: My Experience After 4+ Years — Razwanul Hasan</title>
+  <meta name="description" content="After building 21+ apps across both frameworks, here's my honest comparison on performance, developer experience, and when to choose which.">
+  <link rel="shortcut icon" href="../assets/images/logo.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    (function() {
+      var theme = localStorage.getItem('portfolio-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <link rel="stylesheet" href="../assets/css/blog.css">
+</head>
+<body>
+
+  <header class="blog-header">
+    <div class="blog-header-inner">
+      <a href="../index.html" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to Portfolio
+      </a>
+      <span class="blog-category-tag">Mobile Dev</span>
+    </div>
+  </header>
+
+  <main class="blog-main">
+    <article class="blog-article">
+
+      <div class="blog-article-header">
+        <h1 class="blog-article-title">React Native vs Flutter: My Experience After 4+ Years</h1>
+        <div class="blog-meta-bar">
+          <img src="../assets/images/my-avatar.jpg" alt="Razwanul Hasan" class="blog-author-avatar">
+          <div>
+            <p class="blog-author-name">Md Razwanul Hasan</p>
+            <p class="blog-article-date">December 15, 2025 &nbsp;·&nbsp; 8 min read</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-article-body">
+
+        <p class="lead">I've built <strong>21+ production apps</strong> across both React Native and Flutter — apps used by real businesses in Bangladesh, Australia, Ethiopia, and the USA. This isn't a theoretical comparison. It's from the trenches.</p>
+
+        <h2>The Short Answer</h2>
+        <p>Both are excellent. But they solve different problems and suit different teams. Here's the real breakdown.</p>
+
+        <h2>Performance: Flutter Wins Slightly</h2>
+        <p>Flutter renders everything on its own <strong>Skia/Impeller canvas</strong> — it doesn't rely on native UI components. This means pixel-perfect consistency across platforms and very predictable performance even on lower-end Android devices.</p>
+        <p>React Native uses a JavaScript bridge (or the newer JSI in 0.71+) to communicate with native components. For most apps, you won't notice a difference. But for <strong>animation-heavy UIs, live streaming, or real-time data</strong>, Flutter's rendering engine pulls ahead.</p>
+        <p>In my work on <strong>Hillive</strong> (a live streaming platform), Flutter handled real-time video feeds, gift animations, and chat simultaneously without frame drops. That would have been significantly harder in React Native.</p>
+
+        <h2>Developer Experience: React Native for JS Teams</h2>
+        <p>If your team already knows JavaScript or TypeScript, React Native's learning curve is much gentler. The component model is familiar, and npm's ecosystem is enormous. For web developers moving into mobile, React Native is the clear choice.</p>
+        <p>Dart (Flutter's language) is clean and well-designed, but it's a new language to learn. Once you're comfortable with it, development speed is comparable or better.</p>
+        <p><strong>Hot reload</strong> in both frameworks is excellent. Flutter's stateful hot reload is arguably slightly more reliable.</p>
+
+        <h2>Ecosystem & Libraries</h2>
+        <p>React Native's npm ecosystem is massive, but package quality varies wildly. You'll occasionally run into packages that are unmaintained or break on new React Native versions.</p>
+        <p>Flutter's pub.dev ecosystem is smaller but more curated. Google maintains the core libraries, and official packages (like <code>firebase_core</code>, <code>google_maps_flutter</code>) are high quality and well-documented.</p>
+
+        <h2>Navigation</h2>
+        <p>React Native has fragmented navigation solutions — React Navigation is the community standard, but there are others. Flutter's Navigator 2.0 (plus packages like <code>go_router</code>) is more structured from the start.</p>
+
+        <h2>State Management</h2>
+        <p>Both ecosystems have mature solutions:</p>
+        <ul>
+          <li><strong>React Native:</strong> Redux, Zustand, React Query, MobX</li>
+          <li><strong>Flutter:</strong> BLoC, Riverpod, Provider, GetX</li>
+        </ul>
+        <p>I use <strong>BLoC</strong> for complex Flutter apps (BIFLE, Hillive) because it enforces clean separation of business logic from UI. For React Native, I prefer <strong>React Query + Context API</strong> for most projects.</p>
+
+        <h2>When I Choose React Native</h2>
+        <ul>
+          <li>The client has a JavaScript/web team that will maintain the app</li>
+          <li>The project needs deep third-party SDK integration (often better JS support)</li>
+          <li>Quick turnaround for a business-focused app (e-commerce, CRM, social)</li>
+          <li>The team knows React already</li>
+        </ul>
+
+        <h2>When I Choose Flutter</h2>
+        <ul>
+          <li>The UI is complex or animation-heavy</li>
+          <li>Pixel-perfect design across iOS and Android is required</li>
+          <li>The app needs to run on low-end Android devices</li>
+          <li>Enterprise apps with complex business logic (ERP, fleet management)</li>
+          <li>The project targets more than 2 platforms (mobile + web + desktop)</li>
+        </ul>
+
+        <h2>The Bottom Line</h2>
+        <p>After 4+ years and 21+ apps, I'm comfortable with both. My genuine recommendation:</p>
+        <blockquote>If you're a JS developer or your team is, start with React Native. If you're starting fresh or building a complex, design-heavy app — learn Flutter. It'll pay off.</blockquote>
+        <p>The biggest mistake I see is developers treating this as a permanent allegiance. The best mobile engineers know both.</p>
+
+      </div>
+
+      <div class="blog-article-footer">
+        <a href="../index.html#blog" class="back-link">← More Articles</a>
+        <div class="blog-share">
+          <a href="https://www.linkedin.com/in/mdrazwanulhasan1407" target="_blank" rel="noopener" class="share-btn">Share on LinkedIn</a>
+          <a href="https://twitter.com/RazwanulHasan" target="_blank" rel="noopener" class="share-btn">Share on X</a>
+        </div>
+      </div>
+
+    </article>
+  </main>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

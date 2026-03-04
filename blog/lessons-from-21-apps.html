@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5 Lessons From Building 21+ Mobile Apps — Razwanul Hasan</title>
+  <meta name="description" content="Key takeaways and practical lessons I've learned from years of mobile app development across multiple platforms and industries.">
+  <link rel="shortcut icon" href="../assets/images/logo.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    (function() {
+      var theme = localStorage.getItem('portfolio-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <link rel="stylesheet" href="../assets/css/blog.css">
+</head>
+<body>
+
+  <header class="blog-header">
+    <div class="blog-header-inner">
+      <a href="../index.html" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to Portfolio
+      </a>
+      <span class="blog-category-tag">Tips</span>
+    </div>
+  </header>
+
+  <main class="blog-main">
+    <article class="blog-article">
+
+      <div class="blog-article-header">
+        <h1 class="blog-article-title">5 Lessons From Building 21+ Mobile Apps</h1>
+        <div class="blog-meta-bar">
+          <img src="../assets/images/my-avatar.jpg" alt="Razwanul Hasan" class="blog-author-avatar">
+          <div>
+            <p class="blog-author-name">Md Razwanul Hasan</p>
+            <p class="blog-article-date">February 28, 2025 &nbsp;·&nbsp; 7 min read</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-article-body">
+
+        <p class="lead">I started coding mobile apps in 2019 with no idea what I was doing. Six years, five companies, and 21+ shipped apps later, I've learned things the hard way that I wish someone had told me on day one.</p>
+
+        <h2>Lesson 1: Scope Creep Kills Projects — Protect It Aggressively</h2>
+        <p>The most dangerous moment in any project is when a client says "while you're at it, can we also add...". I've seen projects double in scope mid-development, blow past deadlines, and end with frustrated clients and burned-out developers.</p>
+        <p>What I do now: Write a <strong>Feature Specification Document</strong> at the start of every project. Every feature is either in scope or out of scope. "Out of scope" doesn't mean "no" — it means "we can build that in Phase 2". This single practice has saved more projects than any technical skill I have.</p>
+        <p>Technically: build with scope in mind. Use feature flags for work-in-progress features so you can ship without unfinished code visible to users.</p>
+
+        <h2>Lesson 2: Test on Real Devices, Not Just Simulators</h2>
+        <p>Simulators are convenient but deceptive. I've shipped features that worked perfectly in the simulator and broke immediately on real hardware.</p>
+        <p>Real-device bugs I've encountered that were invisible in simulators:</p>
+        <ul>
+          <li>Camera permissions behaving differently on specific Android OEM builds (Samsung, Xiaomi)</li>
+          <li>Touch target areas being too small for real fingers</li>
+          <li>Biometric authentication (fingerprint/face ID) failing silently</li>
+          <li>Network transitions (WiFi → mobile data) causing unexpected state resets</li>
+          <li>Performance issues on older devices that run smooth on the latest iPhone simulator</li>
+        </ul>
+        <p>Minimum device testing matrix I use before any major release: 1 current Android flagship, 1 mid-range Android (2-3 years old), 1 current iPhone, 1 older iPhone (e.g., iPhone 11).</p>
+
+        <h2>Lesson 3: The Backend Will Let You Down — Build For It</h2>
+        <p>In my first job, I assumed the API would always return what the documentation said. I was wrong. APIs return nulls where there should be strings, empty arrays instead of null, and status 200 with an error message in the body.</p>
+        <p>Build your app as if the API is unreliable:</p>
+        <ul>
+          <li>Null-check everything from the API, even "required" fields</li>
+          <li>Use <code>?.toString() ?? ''</code> defensively instead of direct property access</li>
+          <li>Validate API responses against your models — log mismatches to your crash reporter</li>
+          <li>Design your UI to handle empty states, partial data, and loading states for <em>every</em> screen</li>
+          <li>Never show a crash to the user — catch exceptions at the boundary and show a friendly error screen</li>
+        </ul>
+        <p>The <strong>Realty Pro Shots</strong> app I built was particularly demanding — camera hardware + AWS S3 uploads + FCM notifications in sequence. One failure in that chain needed graceful recovery without data loss. Building defensively from day one made that achievable.</p>
+
+        <h2>Lesson 4: Invest in Developer Tools Early</h2>
+        <p>I resisted setting up proper tooling in early projects because "the app is small, it's not worth it". That thinking cost me hours of debugging time later.</p>
+        <p>The tooling I now set up on day one of every project:</p>
+        <ul>
+          <li><strong>Crash reporting</strong> — Firebase Crashlytics (free). You'll see crashes from users that you'd never catch yourself.</li>
+          <li><strong>Analytics</strong> — Firebase Analytics. Know which screens users visit and which they abandon.</li>
+          <li><strong>Logging</strong> — Structured logging with log levels. Filter to errors in production, verbose in development.</li>
+          <li><strong>Linting</strong> — <code>flutter_lints</code> or ESLint with strict rules. Enforce code style so reviews focus on logic, not formatting.</li>
+          <li><strong>Environment configuration</strong> — Separate dev/staging/production configs from day one. Never hardcode API URLs.</li>
+        </ul>
+
+        <h2>Lesson 5: Communication Is a Technical Skill</h2>
+        <p>This was the hardest lesson. Early in my career, I thought my job was to write code. I now know that my job is to help clients solve problems — and code is just one of the tools.</p>
+        <p>The developers who advance fastest are the ones who can:</p>
+        <ul>
+          <li>Explain technical constraints in plain language ("we can't do that in 2 days because...")</li>
+          <li>Push back on bad ideas respectfully with alternatives ("that would work, but here's a simpler approach")</li>
+          <li>Give accurate time estimates (and add a 30% buffer — always)</li>
+          <li>Proactively communicate blockers before they become problems</li>
+          <li>Document decisions so future-you (and teammates) understand the why</li>
+        </ul>
+        <p>I've seen technically brilliant developers get stuck in junior roles because they couldn't communicate. And I've seen average developers advance quickly because clients trusted them completely.</p>
+
+        <blockquote>Your code will be read by humans before it's executed by machines. Write for the humans first.</blockquote>
+
+        <h2>Bonus: The One Thing That Changed My Career</h2>
+        <p>Build something real, outside of work, that solves a problem you have. It doesn't need to be groundbreaking. The discipline of taking a project from idea to store submission — on your own time, with no one pushing you — teaches you things no job can.</p>
+        <p>That discipline is what separates people who code for a salary from engineers who build for impact.</p>
+
+      </div>
+
+      <div class="blog-article-footer">
+        <a href="../index.html" class="back-link">← More Articles</a>
+        <div class="blog-share">
+          <a href="https://www.linkedin.com/in/mdrazwanulhasan1407" target="_blank" rel="noopener" class="share-btn">Share on LinkedIn</a>
+          <a href="https://twitter.com/RazwanulHasan" target="_blank" rel="noopener" class="share-btn">Share on X</a>
+        </div>
+      </div>
+
+    </article>
+  </main>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

@@ -7,7 +7,7 @@
     "dateFormatted": "Dec 15, 2025",
     "image": "./assets/images/blog-1.jpg",
     "excerpt": "After building 21+ apps across both frameworks, here's my honest comparison on performance, developer experience, and when to choose which.",
-    "url": "#"
+    "url": "./blog/react-native-vs-flutter.html"
   },
   {
     "id": "clean-architecture-mobile",
@@ -17,7 +17,7 @@
     "dateFormatted": "Oct 20, 2025",
     "image": "./assets/images/blog-2.jpg",
     "excerpt": "How I structure my mobile projects for scalability and maintainability using clean architecture principles with MVVM and Repository patterns.",
-    "url": "#"
+    "url": "./blog/clean-architecture-mobile.html"
   },
   {
     "id": "app-deployment-guide",
@@ -27,7 +27,7 @@
     "dateFormatted": "Aug 10, 2025",
     "image": "./assets/images/blog-3.jpg",
     "excerpt": "A complete guide to deploying mobile apps on Google Play Store and Apple App Store Connect, including tips for faster review approval.",
-    "url": "#"
+    "url": "./blog/app-deployment-guide.html"
   },
   {
     "id": "flutter-state-management",
@@ -37,7 +37,7 @@
     "dateFormatted": "Jun 5, 2025",
     "image": "./assets/images/blog-4.jpg",
     "excerpt": "Comparing the most popular state management solutions in Flutter with practical examples from production apps.",
-    "url": "#"
+    "url": "./blog/flutter-state-management.html"
   },
   {
     "id": "rest-api-best-practices",
@@ -47,7 +47,7 @@
     "dateFormatted": "Apr 18, 2025",
     "image": "./assets/images/blog-5.jpg",
     "excerpt": "How to build robust API layers in mobile apps with proper error handling, caching, and offline support strategies.",
-    "url": "#"
+    "url": "./blog/rest-api-best-practices.html"
   },
   {
     "id": "lessons-from-21-apps",
@@ -57,6 +57,6 @@
     "dateFormatted": "Feb 28, 2025",
     "image": "./assets/images/blog-6.jpg",
     "excerpt": "Key takeaways and practical lessons I've learned from years of mobile app development across multiple platforms and industries.",
-    "url": "#"
+    "url": "./blog/lessons-from-21-apps.html"
   }
 ]

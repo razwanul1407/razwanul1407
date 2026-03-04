@@ -127,7 +127,17 @@ function renderProjects(data) {
   const projectList = $("#projectList");
   if (!projectList) return;
 
-  projectList.innerHTML = data.map((project) => `
+  projectList.innerHTML = data.map((project) => {
+    const hasAndroid = project.playstoreUrl ? true : project.tech.some(t => /android|java|kotlin/i.test(t));
+    const hasIOS = project.appstoreUrl ? true : project.tech.some(t => /ios|swift/i.test(t));
+    const isWeb = project.category === "web applications";
+
+    const badges = [];
+    if (hasAndroid && !isWeb) badges.push(`<span class="platform-badge android">Android</span>`);
+    if (hasIOS && !isWeb) badges.push(`<span class="platform-badge ios">iOS</span>`);
+    if (isWeb) badges.push(`<span class="platform-badge web">Web</span>`);
+
+    return `
     <li class="project-item active" data-filter-item data-category="${project.category}">
       <a href="#" class="project-link" data-project-id="${project.id}">
         <figure class="project-img">
@@ -139,10 +149,11 @@ function renderProjects(data) {
         <div class="project-info">
           <h3 class="project-title">${project.title}</h3>
           <p class="project-category">${project.categoryLabel}</p>
+          ${badges.length ? `<div class="project-platform-badges">${badges.join("")}</div>` : ""}
         </div>
       </a>
-    </li>
-  `).join("");
+    </li>`;
+  }).join("");
 
   // Re-bind filter & modal after render
   bindPortfolioFilter();
@@ -912,4 +923,24 @@ document.addEventListener("DOMContentLoaded", async () => {
   animateStats();
   bindServicesPage();
   bindAboutCTA();
+  initFAQ();
 });
+
+
+/* ─────────────────────────────────────────────
+   §19. FAQ ACCORDION
+   ───────────────────────────────────────────── */
+
+function initFAQ() {
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-faq-btn]");
+    if (!btn) return;
+    const item = btn.closest(".faq-item");
+    if (!item) return;
+    const isOpen = item.classList.contains("open");
+    // Close all
+    document.querySelectorAll(".faq-item.open").forEach(el => el.classList.remove("open"));
+    // Toggle clicked
+    if (!isOpen) item.classList.add("open");
+  });
+}

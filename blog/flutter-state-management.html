@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>State Management in Flutter: BLoC vs Riverpod — Razwanul Hasan</title>
+  <meta name="description" content="Comparing the most popular state management solutions in Flutter with practical examples from production apps.">
+  <link rel="shortcut icon" href="../assets/images/logo.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    (function() {
+      var theme = localStorage.getItem('portfolio-theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <link rel="stylesheet" href="../assets/css/blog.css">
+</head>
+<body>
+
+  <header class="blog-header">
+    <div class="blog-header-inner">
+      <a href="../index.html" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to Portfolio
+      </a>
+      <span class="blog-category-tag">Flutter</span>
+    </div>
+  </header>
+
+  <main class="blog-main">
+    <article class="blog-article">
+
+      <div class="blog-article-header">
+        <h1 class="blog-article-title">State Management in Flutter: BLoC vs Riverpod</h1>
+        <div class="blog-meta-bar">
+          <img src="../assets/images/my-avatar.jpg" alt="Razwanul Hasan" class="blog-author-avatar">
+          <div>
+            <p class="blog-author-name">Md Razwanul Hasan</p>
+            <p class="blog-article-date">June 5, 2025 &nbsp;·&nbsp; 9 min read</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="blog-article-body">
+
+        <p class="lead">I've used <strong>BLoC</strong> on large-scale enterprise apps and <strong>Riverpod</strong> on fast-moving product apps. Both are excellent. Here's when I reach for each — with real examples from apps I've shipped.</p>
+
+        <h2>Why State Management Matters in Flutter</h2>
+        <p>Flutter's reactive UI model is powerful, but <code>setState()</code> only works for local widget state. As soon as you need to share state across the widget tree — user authentication, cart items, network data — you need a proper solution.</p>
+        <p>The Flutter community has converged around two mature solutions: <strong>BLoC/Cubit</strong> and <strong>Riverpod</strong>. Both are production-ready. The choice comes down to team size, app complexity, and preference for explicitness vs conciseness.</p>
+
+        <h2>BLoC (Business Logic Component)</h2>
+        <p>BLoC enforces a strict pattern: the UI emits <strong>Events</strong>, the BLoC processes them and emits <strong>States</strong>. The UI rebuilds when state changes. This unidirectional data flow makes debugging straightforward — you always know what triggered a state change.</p>
+
+        <pre><code>// Events
+abstract class CartEvent {}
+class AddToCartRequested extends CartEvent {
+  final Product product;
+  AddToCartRequested(this.product);
+}
+
+// States
+abstract class CartState {}
+class CartLoading extends CartState {}
+class CartLoaded extends CartState {
+  final List&lt;CartItem&gt; items;
+  final double total;
+  CartLoaded({required this.items, required this.total});
+}
+class CartError extends CartState {
+  final String message;
+  CartError(this.message);
+}
+
+// BLoC
+class CartBloc extends Bloc&lt;CartEvent, CartState&gt; {
+  final CartRepository repository;
+
+  CartBloc({required this.repository}) : super(CartLoading()) {
+    on&lt;AddToCartRequested&gt;(_onAddToCart);
+  }
+
+  Future&lt;void&gt; _onAddToCart(
+    AddToCartRequested event,
+    Emitter&lt;CartState&gt; emit,
+  ) async {
+    emit(CartLoading());
+    final result = await repository.addItem(event.product);
+    result.fold(
+      (failure) => emit(CartError(failure.message)),
+      (cart) => emit(CartLoaded(items: cart.items, total: cart.total)),
+    );
+  }
+}</code></pre>
+
+        <h3>When BLoC Shines</h3>
+        <ul>
+          <li>Large teams where explicit patterns prevent inconsistency</li>
+          <li>Apps with complex state transitions (multi-step flows, real-time data)</li>
+          <li>When you want built-in logging/testing support from <code>bloc_test</code></li>
+          <li>Enterprise apps where auditability matters</li>
+        </ul>
+        <p>I used BLoC on <strong>BIFLE User &amp; Driver</strong> (real-time location tracking, booking state machine) and <strong>Hillive</strong> (live streaming state management). The explicit event/state model was essential for debugging race conditions.</p>
+
+        <h2>Riverpod</h2>
+        <p>Riverpod is more concise. You define <strong>providers</strong> (pieces of state or computed values) and watch them in your widgets. No event classes needed for simple cases.</p>
+
+        <pre><code>// Define providers
+final cartRepositoryProvider = Provider&lt;CartRepository&gt;((ref) {
+  return CartRepositoryImpl();
+});
+
+final cartProvider = AsyncNotifierProvider&lt;CartNotifier, Cart&gt;(() {
+  return CartNotifier();
+});
+
+class CartNotifier extends AsyncNotifier&lt;Cart&gt; {
+  @override
+  Future&lt;Cart&gt; build() async {
+    return ref.watch(cartRepositoryProvider).getCart();
+  }
+
+  Future&lt;void&gt; addItem(Product product) async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      return ref.read(cartRepositoryProvider).addItem(product);
+    });
+  }
+}
+
+// In widget
+class CartScreen extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final cartAsync = ref.watch(cartProvider);
+    return cartAsync.when(
+      data: (cart) => CartView(cart: cart),
+      loading: () => const CircularProgressIndicator(),
+      error: (err, _) => ErrorView(message: err.toString()),
+    );
+  }
+}</code></pre>
+
+        <h3>When Riverpod Shines</h3>
+        <ul>
+          <li>Smaller teams or solo developers</li>
+          <li>Fast-moving product apps where boilerplate slows you down</li>
+          <li>Apps with many small, interconnected pieces of state</li>
+          <li>When you want compile-time safety for provider dependencies</li>
+        </ul>
+
+        <h2>The Practical Comparison</h2>
+
+        <table class="blog-table">
+          <thead>
+            <tr><th>Criteria</th><th>BLoC</th><th>Riverpod</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Boilerplate</td><td>More verbose</td><td>Less verbose</td></tr>
+            <tr><td>Testability</td><td>Excellent (bloc_test)</td><td>Excellent</td></tr>
+            <tr><td>Learning Curve</td><td>Steeper</td><td>Gentler</td></tr>
+            <tr><td>Explicitness</td><td>Very explicit</td><td>Moderate</td></tr>
+            <tr><td>Compile safety</td><td>Good</td><td>Better</td></tr>
+            <tr><td>Large teams</td><td>Better (enforced patterns)</td><td>Good</td></tr>
+          </tbody>
+        </table>
+
+        <h2>My Personal Choice</h2>
+        <p>For <strong>enterprise or complex apps with a team</strong>: BLoC. The verbosity is a feature — it forces every developer to think explicitly about events and states, making code reviews easier and bugs more obvious.</p>
+        <p>For <strong>product apps or when moving fast</strong>: Riverpod. Fewer files, less ceremony, still fully testable.</p>
+
+        <blockquote>The best state management solution is the one your team understands and uses consistently. A mediocre pattern used everywhere beats a perfect pattern used nowhere.</blockquote>
+
+      </div>
+
+      <div class="blog-article-footer">
+        <a href="../index.html" class="back-link">← More Articles</a>
+        <div class="blog-share">
+          <a href="https://www.linkedin.com/in/mdrazwanulhasan1407" target="_blank" rel="noopener" class="share-btn">Share on LinkedIn</a>
+          <a href="https://twitter.com/RazwanulHasan" target="_blank" rel="noopener" class="share-btn">Share on X</a>
+        </div>
+      </div>
+
+    </article>
+  </main>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
