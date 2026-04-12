@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — ScanApp</title>
+  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-gradient-onyx: linear-gradient(to bottom right, hsl(240,1%,25%) 3%, hsl(0,0%,19%) 97%);
+      --bg-gradient-jet: linear-gradient(to bottom right, hsla(240,1%,18%,0.251) 0%, hsla(240,2%,11%,0) 100%), hsl(240,2%,13%);
+      --border-gradient-onyx: linear-gradient(to bottom right, hsl(0,0%,25%) 0%, hsla(0,0%,25%,0) 50%);
+      --text-gradient-yellow: linear-gradient(to right, hsl(45,100%,72%), hsl(35,100%,68%));
+      --jet: hsl(0,0%,22%);
+      --onyx: hsl(240,1%,17%);
+      --eerie-black-1: hsl(240,2%,13%);
+      --eerie-black-2: hsl(240,2%,12%);
+      --smoky-black: hsl(0,0%,7%);
+      --white-1: hsl(0,0%,100%);
+      --white-2: hsl(0,0%,98%);
+      --orange-yellow-crayola: hsl(45,100%,72%);
+      --light-gray: hsl(0,0%,84%);
+      --light-gray-70: hsla(0,0%,84%,0.7);
+      --ff-poppins: 'Poppins', sans-serif;
+      --shadow-1: -4px 8px 24px hsla(0,0%,0%,0.25);
+      --shadow-2: 0 16px 30px hsla(0,0%,0%,0.25);
+    }
+
+    body {
+      font-family: var(--ff-poppins);
+      background: var(--smoky-black);
+      color: var(--light-gray);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    a { color: var(--orange-yellow-crayola); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--eerie-black-2);
+      border-bottom: 1px solid var(--jet);
+      padding: 14px 30px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .navbar-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--onyx);
+    }
+
+    .navbar-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .navbar-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white-1);
+    }
+
+    .navbar-sub {
+      font-size: 11px;
+      color: var(--light-gray-70);
+      margin-top: 1px;
+    }
+
+    .navbar-back {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--orange-yellow-crayola);
+      border: 1px solid var(--orange-yellow-crayola);
+      padding: 7px 16px;
+      border-radius: 8px;
+      transition: background 0.2s;
+    }
+
+    .navbar-back:hover {
+      background: hsla(45,100%,72%,0.1);
+      text-decoration: none;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--bg-gradient-jet);
+      border-bottom: 1px solid var(--jet);
+      padding: 56px 30px 44px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: hsla(45,100%,72%,0.08);
+      border: 1px solid hsla(45,100%,72%,0.25);
+      color: var(--orange-yellow-crayola);
+      font-size: 11px;
+      font-weight: 500;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(22px, 4vw, 32px);
+      font-weight: 700;
+      color: var(--white-1);
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      font-size: 14px;
+      color: var(--light-gray-70);
+      max-width: 520px;
+      margin: 0 auto 20px;
+    }
+
+    .hero-date {
+      font-size: 12px;
+      color: var(--light-gray-70);
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 36px 20px 80px;
+    }
+
+    /* ── META CARDS ── */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .meta-card {
+      background: var(--bg-gradient-jet);
+      border: 1px solid var(--jet);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+
+    .meta-label {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--light-gray-70);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 5px;
+    }
+
+    .meta-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--white-1);
+    }
+
+    /* ── SECTION CARD ── */
+    .policy-section {
+      background: var(--bg-gradient-jet);
+      border: 1px solid var(--jet);
+      border-radius: 14px;
+      padding: 26px 28px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+
+    .policy-section:hover {
+      border-color: hsla(45,100%,72%,0.2);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .section-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: var(--bg-gradient-onyx);
+      border: 1px solid var(--jet);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .section-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--orange-yellow-crayola);
+    }
+
+    .section-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white-1);
+    }
+
+    .policy-section p {
+      font-size: 13px;
+      color: var(--light-gray-70);
+      margin-bottom: 10px;
+      line-height: 1.7;
+    }
+
+    .policy-section p:last-child { margin-bottom: 0; }
+
+    .policy-section ul {
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .policy-section ul li {
+      font-size: 13px;
+      color: var(--light-gray-70);
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.65;
+    }
+
+    .policy-section ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--orange-yellow-crayola);
+      opacity: 0.7;
+    }
+
+    .policy-section ul li strong {
+      color: var(--white-2);
+      font-weight: 500;
+    }
+
+    /* ── CONTACT CARD ── */
+    .contact-card {
+      margin-top: 28px;
+      background: var(--bg-gradient-onyx);
+      border: 1px solid var(--jet);
+      border-radius: 14px;
+      padding: 30px 28px;
+      text-align: center;
+    }
+
+    .contact-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white-1);
+      margin-bottom: 8px;
+    }
+
+    .contact-card p {
+      font-size: 13px;
+      color: var(--light-gray-70);
+      margin-bottom: 18px;
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--orange-yellow-crayola);
+      color: var(--smoky-black);
+      font-family: var(--ff-poppins);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .contact-btn:hover { opacity: 0.85; text-decoration: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 24px 20px;
+      border-top: 1px solid var(--jet);
+      font-size: 12px;
+      color: var(--light-gray-70);
+    }
+
+    footer a { color: var(--orange-yellow-crayola); }
+
+    @media (max-width: 500px) {
+      .navbar { padding: 12px 16px; }
+      .hero { padding: 40px 16px 32px; }
+      main { padding: 24px 14px 60px; }
+      .policy-section { padding: 20px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-icon">
+      <img src="./assets/images/scanapp-icon.png" alt="ScanApp icon">
+    </div>
+    <div>
+      <div class="navbar-title">ScanApp</div>
+      <div class="navbar-sub">Document Scanner &amp; Converter</div>
+    </div>
+    <a href="./index.html" class="navbar-back">
+      ← Portfolio
+    </a>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+      Privacy Policy
+    </div>
+    <h1>Your Privacy Matters</h1>
+    <p>This policy explains what data ScanApp collects, how it is used, and your rights as a user.</p>
+    <span class="hero-date">Last updated: April 12, 2026</span>
+  </div>
+
+  <main>
+
+    <!-- Meta cards -->
+    <div class="meta-grid">
+      <div class="meta-card">
+        <div class="meta-label">App Name</div>
+        <div class="meta-value">ScanApp</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-label">Developer</div>
+        <div class="meta-value">Md. Razwanul Hasan</div>
+      </div>
+      <div class="meta-card">
+        <div class="meta-label">Platform</div>
+        <div class="meta-value">Android &amp; iOS</div>
+      </div>
+    </div>
+
+    <!-- 1. Introduction -->
+    <div class="policy-section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+        </div>
+        <span class="section-title">Introduction</span>
+      </div>
+      <p>Welcome to <strong style="color:var(--white-2)">ScanApp — Document Scanner &amp; Converter</strong>. This Privacy Policy describes how Md. Razwanul Hasan ("we", "us", or "our") collects, uses, and protects your information when you use the ScanApp mobile application.</p>
+      <p>By using ScanApp, you agree to the collection and use of information in accordance with this policy. If you do not agree, please discontinue use of the app.</p>
+    </div>
+
+    <!-- 2. Information We Collect -->
+    <div class="policy-section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>
+        </div>
+        <span class="section-title">Information We Collect</span>
+      </div>
+      <p>We collect the following types of information to provide and improve our service:</p>
+      <ul>
+        <li><strong>Account Information:</strong> Email address, display name, and profile photo when you sign in with Google or register with email.</li>
+        <li><strong>Scanned Documents:</strong> Images and PDFs you create are stored locally on your device and optionally synced to Firebase.</li>
+        <li><strong>OCR Text Data:</strong> Text extracted from scanned documents via Google ML Kit is processed fully on-device and stored only in your local database.</li>
+        <li><strong>Device Information:</strong> Device model, OS version, and app version for crash reporting and compatibility.</li>
+        <li><strong>Usage Analytics:</strong> Anonymous crash reports collected via Firebase Crashlytics to improve app stability.</li>
+        <li><strong>Camera &amp; Storage Access:</strong> Required to scan documents and save files — we do not access your gallery beyond files you explicitly select.</li>
+      </ul>
+    </div>
+
+    <!-- 3. How We Use Your Information -->
+    <div class="policy-section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+        </div>
+        <span class="section-title">How We Use Your Information</span>
+      </div>
+      <ul>
+        <li>To provide core scanning, OCR, QR/barcode reading, and document export features.</li>
+        <li>To authenticate your account securely via Firebase Authentication.</li>
+        <li>To sync your documents across devices (only if you opt in to cloud sync).</li>
+        <li>To send push notifications about app updates (only with your permission).</li>
+        <li>To diagnose crashes and bugs through anonymous crash reporting.</li>
+        <li>To check for app updates and notify you of new versions on the Play Store.</li>
+      </ul>
+    </div>
+
+    <!-- 4. Data Storage & Security -->
+    <div class="policy-section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+        </div>
+        <span class="section-title">Data Storage &amp; Security</span>
+      </div>
+      <ul>
+        <li><strong>Local Storage:</strong> Documents are stored in an SQLite database with AES-256 encryption via Flutter Secure Storage.</li>
+        <li><strong>Cloud Storage:</strong> If you enable cloud sync, data is stored in Firebase Realtime Database secured by Firebase Authentication rules.</li>
+        <li><strong>Biometric Lock:</strong> The app supports fingerprint, Face ID, or PIN lock to prevent unauthorised access.</li>
+        <li><strong>No Third-Party Selling:</strong> We do not sell, trade, or rent your personal data to third parties.</li>
+        <li><strong>Password-Protected PDFs:</strong> Export passwords are set by you and are never transmitted to our servers.</li>
+      </ul>
+    </div>
+
+    <!-- 5. Third-Party Services -->
+    <div class="policy-section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+        </div>
+        <span class="section-title">Third-Party Services</span>
+      </div>
+      <p>ScanApp uses the following third-party services, each governed by their own privacy policies:</p>
+      <ul>
+        <li><strong>Firebase (Google):</strong> Authentication, Realtime Database, Cloud Messaging, and Crashlytics — <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></li>
+        <li><strong>Google ML Kit:</strong> On-device OCR text recognition — no data is sent to Google servers. <a href="https://developers.google.com/ml-kit/terms" target="_blank" rel="noopener">ML Kit Terms</a></li>
+        <li><strong>Google Sign-In:</strong> OAuth authentication using your Google account.</li>
+      </ul>
+    </div>
+
+    <!-- 6. Permissions -->
+    <div class="policy-section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+        </div>
+        <span class="section-title">App Permissions</span>
+      </div>
+      <ul>
+        <li><strong>Camera:</strong> Required to capture documents and scan QR/barcodes.</li>
+        <li><strong>Storage / Media:</strong> Required to save scanned PDFs and images to your device.</li>
+        <li><strong>Biometric / Device Credentials:</strong> Optional — used for app lock feature only.</li>
+        <li><strong>Internet:</strong> Required for Firebase sync, authentication, and push notifications.</li>
+        <li><strong>Notifications:</strong> Optional — for receiving app update and admin notifications.</li>
+      </ul>
+      <p style="margin-top:12px">You may revoke permissions in your device settings at any time, though some features may become unavailable.</p>
+    </div>
+
+    <!-- 7. Data Retention -->
+    <div class="policy-section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24"><path d="M6 2v6l2 2-2 2v6l6-2 6 2v-6l-2-2 2-2V2l-6 2-6-2z"/></svg>
+        </div>
+        <span class="section-title">Data Retention &amp; Deletion</span>
+      </div>
+      <ul>
+        <li>Local documents remain on your device until you delete them or uninstall the app.</li>
+        <li>Cloud-synced data is retained while your account is active.</li>
+        <li>To delete your account and all associated cloud data, contact us at the email below. We will process the request within 30 days.</li>
+        <li>Crash reports are retained by Firebase Crashlytics for up to 90 days.</li>
+      </ul>
+    </div>
+
+    <!-- 8. Children's Privacy -->
+    <div class="policy-section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        </div>
+        <span class="section-title">Children's Privacy</span>
+      </div>
+      <p>ScanApp is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us and we will promptly delete it.</p>
+    </div>
+
+    <!-- 9. Changes -->
+    <div class="policy-section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+        </div>
+        <span class="section-title">Changes to This Policy</span>
+      </div>
+      <p>We may update this Privacy Policy from time to time. We will notify you of significant changes by updating the "Last updated" date at the top of this page and, where appropriate, via an in-app notification.</p>
+      <p>Continued use of ScanApp after changes are posted constitutes your acceptance of the updated policy.</p>
+    </div>
+
+    <!-- Contact -->
+    <div class="contact-card">
+      <h3>Questions or Concerns?</h3>
+      <p>If you have any questions about this Privacy Policy or wish to request data deletion, please reach out.</p>
+      <a href="mailto:razwanulhasan@gmail.com" class="contact-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        razwanulhasan@gmail.com
+      </a>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Md. Razwanul Hasan &mdash; ScanApp Privacy Policy &nbsp;|&nbsp; <a href="./index.html">← Back to Portfolio</a></p>
+  </footer>
+
+</body>
+</html>

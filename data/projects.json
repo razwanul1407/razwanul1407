@@ -1,4 +1,29 @@
 [
+  {
+    "id": "scanapp",
+    "title": "ScanApp",
+    "fullTitle": "ScanApp — Document Scanner & Converter (Flutter)",
+    "category": "mobile applications",
+    "categoryLabel": "Flutter Application",
+    "description": "ScanApp is a powerful all-in-one document scanner and converter built with Flutter. It features auto-edge detection, 10+ filters, OCR text extraction via Google ML Kit, QR/barcode scanning, PDF/image export with password protection, biometric app lock, multi-language support, and optional Firebase cloud sync.",
+    "tech": ["Flutter", "Dart", "Firebase", "Google ML Kit", "SQLite", "Provider", "GoRouter"],
+    "image": "./assets/images/scanapp-icon.png",
+    "highlights": [
+      "Auto edge detection and 10+ image filters for professional document scans",
+      "OCR text extraction powered by Google ML Kit — fully on-device, offline",
+      "QR code & barcode scanner with real-time detection",
+      "Export to PDF or image with compression presets and password protection",
+      "Biometric lock — fingerprint, Face ID, or PIN to secure your documents",
+      "Multi-language support: English, Bengali, Hindi, Arabic with RTL",
+      "Optional Firebase cloud sync for cross-device access",
+      "Folder organisation, full-text search, and batch operations"
+    ],
+    "playstoreUrl": "https://play.google.com/store/apps/details?id=com.razwanul1407.scanapp",
+    "appstoreUrl": "",
+    "liveUrl": "",
+    "githubUrl": "",
+    "privacyPolicyUrl": "./scanapp-privacy-policy.html"
+  },
    {
     "id": "beautysiaa",
     "title": "Beautysiaa",

@@ -555,6 +555,12 @@ function bindProjectModal() {
                 <ion-icon name="open-outline"></ion-icon> Live Demo
               </a>`;
           }
+          if (project.privacyPolicyUrl) {
+            modalLinksEl.innerHTML += `
+              <a href="${project.privacyPolicyUrl}" class="project-modal-link privacy" target="_blank" rel="noopener">
+                <ion-icon name="shield-checkmark-outline"></ion-icon> Privacy Policy
+              </a>`;
+          }
         }
       }
 
