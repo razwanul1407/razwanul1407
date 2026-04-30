@@ -740,6 +740,12 @@ main {
   border: 1px solid #3a3a3c;
 }
 
+.project-modal-link.documentation {
+  background: transparent;
+  color: var(--light-gray);
+  border: 1px solid var(--light-gray);
+}
+
 .project-modal-link.privacy {
   background: transparent;
   color: var(--orange-yellow-crayola);

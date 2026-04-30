@@ -124,17 +124,18 @@
   },
   {
     "id": "qfl-app",
-    "title": "QFL App",
-    "fullTitle": "QFL — Quality Foods Limited App (Flutter)",
+    "title": "Q-Map App",
+    "fullTitle": "Q-Map — Quality Foods Limited App (Flutter)",
     "category": "mobile applications",
     "categoryLabel": "Flutter Application",
-    "description": "QFL is the official mobile app for Quality Foods Limited, providing customers with an easy way to browse products, place orders, and manage their accounts. The app streamlines the ordering experience for Quality Foods' customer base.",
+    "description": "Q-Map is the official mobile app for Quality Foods Limited, providing customers with an easy way to browse products, place orders, and manage their accounts. The app streamlines the ordering experience for Quality Foods' customer base.",
     "tech": ["Flutter", "Dart", "REST API", "Payment Gateway"],
     "image": "https://play-lh.googleusercontent.com/Ng2mDkkxCGO--9Eoi2eQ-d_cBcDToLROuiv8ILIzKNL693BYvdcgc0rf8zaH-VcU1Q",
     "playstoreUrl": "https://play.google.com/store/apps/details?id=com.appinionbd.qfl",
     "appstoreUrl": "",
     "liveUrl": "https://www.qfl.com.bd",
-    "githubUrl": ""
+    "githubUrl": "",
+    "documentationUrl": "document/QMap_App_Documentation.html"
   },
   {
     "id": "bifle-user",
