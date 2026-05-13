@@ -24,6 +24,29 @@
     "githubUrl": "",
     "privacyPolicyUrl": "./scanapp-privacy-policy.html"
   },
+  {
+    "id": "projectease",
+    "title": "ProjectEase",
+    "fullTitle": "ProjectEase — Project Management SaaS (Laravel + Vue)",
+    "category": "web applications",
+    "categoryLabel": "Laravel / Vue Web Application",
+    "description": "ProjectEase is a full-featured project management SaaS built with Laravel and Vue. It brings tickets, Kanban boards, sprints, QA workflow, time tracking, intake forms, GitHub evidence, reports, attachments, release notes, roles, and client-facing delivery proof into one clean workspace.",
+    "tech": ["Laravel", "Vue.js", "Inertia.js", "MySQL", "Tailwind CSS", "Spatie Media Library", "REST APIs", "GitHub Webhooks"],
+    "image": "./assets/images/projectease-cover.png",
+    "highlights": [
+      "Complete ticket lifecycle with status, priority, assignee, due date, estimates, story points, comments, and attachments",
+      "Kanban board, sprint planning, QA board, and delivery proof workflows for real software teams",
+      "Time tracking with estimates, logged hours, reports, team/project breakdowns, and overdue insights",
+      "Public intake forms that convert client requests into actionable tickets",
+      "GitHub integration for pull request and commit evidence linked back to tickets",
+      "Role-based workspace management, audit-friendly history, release notes, and client portal features"
+    ],
+    "playstoreUrl": "",
+    "appstoreUrl": "",
+    "liveUrl": "",
+    "githubUrl": "https://github.com/razwanul1407/project_management",
+    "documentationUrl": "document/ProjectEase_Documentation.html"
+  },
    {
     "id": "beautysiaa",
     "title": "Beautysiaa",
