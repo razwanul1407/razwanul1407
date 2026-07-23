@@ -15,13 +15,6 @@
       "description": "Developing & maintaining in-house software for Ziarah Travel & Tourism using Flutter and React Native for cross-platform application development. Successfully developed 2 mobile applications from scratch."
     },
     {
-      "title": "Senior Software Engineer",
-      "company": "Quality Feeds Limited (Quality Group)",
-      "date": "June 2024 — Present",
-      "location": "On-Site",
-      "description": "Develop in-house software using Native Android, Flutter, and React Native for cross-platform application development. Successfully developed 5 mobile applications from scratch."
-    },
-    {
       "title": "Software Engineer",
       "company": "Nexkraft Ltd.",
       "date": "January 2023 — June 2025",
@@ -45,19 +38,9 @@
   ],
   "education": [
     {
-      "title": "Bangladesh University of Professionals",
-      "date": "2023 — 2025",
-      "description": "Master of CSE"
-    },
-    {
       "title": "Varendra University",
       "date": "2019 — 2022",
       "description": "Bachelor of CSE"
-    },
-    {
-      "title": "Varendra College",
-      "date": "2016 — 2018",
-      "description": "Science"
     }
   ],
   "technicalSkills": [
